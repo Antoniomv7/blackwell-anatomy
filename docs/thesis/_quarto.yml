@@ -1,0 +1,48 @@
+project:
+  type: book
+  output-dir: _output
+
+book:
+  title: "The Anatomy of an Efficient Blackwell GEMM"
+  subtitle: "Microbenchmarking and Hardware-Software Co-Design for Edge Computing"
+  author: "Tu Nombre"
+  date: "2025"
+  chapters:
+    - abstract.qmd
+    - index.qmd
+    - acknowledgements.qmd
+    - intro.qmd
+    - background.qmd
+    - architecture.qmd
+    - metrics.qmd
+    - programming.qmd
+    - methodology.qmd
+    - results.qmd
+    - conclusion.qmd
+    - references.qmd
+    - appendices.qmd
+
+bibliography: references.bib
+
+format:
+  pdf:
+    documentclass: scrreprt # KOMA-Script Report (Estándar europeo para tesis)
+    classoption: [a4paper, 11pt]
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=3cm
+      - right=2cm
+    lof: true # List of Figures automática
+    lot: true # List of Tables automática
+    toc: true
+    number-sections: true
+    colorlinks: true
+    code-line-numbers: true
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{booktabs}
+  html:
+    theme: cosmo
+    code-copy: true
