@@ -1,5 +1,495 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "",
+    "text": "Abstract",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#motivation-and-context-the-need-for-hardwaresoftware-co-design",
+    "href": "index.html#motivation-and-context-the-need-for-hardwaresoftware-co-design",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Motivation and Context: The Need for Hardware–Software Co-Design",
+    "text": "Motivation and Context: The Need for Hardware–Software Co-Design",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#challenges-in-efficient-compute-for-ai-and-edge-applications",
+    "href": "index.html#challenges-in-efficient-compute-for-ai-and-edge-applications",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Challenges in Efficient Compute for AI and Edge Applications",
+    "text": "Challenges in Efficient Compute for AI and Edge Applications",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#objectives-and-scope-of-the-thesis",
+    "href": "index.html#objectives-and-scope-of-the-thesis",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Objectives and Scope of the Thesis",
+    "text": "Objectives and Scope of the Thesis",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#methodology-overview",
+    "href": "index.html#methodology-overview",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Methodology Overview",
+    "text": "Methodology Overview",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#structure-of-the-thesis",
+    "href": "index.html#structure-of-the-thesis",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Structure of the Thesis",
+    "text": "Structure of the Thesis",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#evolution-of-gpu-architectures-from-volta-to-blackwell",
+    "href": "index.html#evolution-of-gpu-architectures-from-volta-to-blackwell",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Evolution of GPU Architectures: From Volta to Blackwell",
+    "text": "Evolution of GPU Architectures: From Volta to Blackwell",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#hardwaresoftware-co-design-principles-and-applications",
+    "href": "index.html#hardwaresoftware-co-design-principles-and-applications",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Hardware–Software Co-Design: Principles and Applications",
+    "text": "Hardware–Software Co-Design: Principles and Applications",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#general-matrix-matrix-multiplication-gemm-in-ai-workloads",
+    "href": "index.html#general-matrix-matrix-multiplication-gemm-in-ai-workloads",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
+    "text": "General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#domain-specific-languages-dsls-for-gpu-programming",
+    "href": "index.html#domain-specific-languages-dsls-for-gpu-programming",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Domain-Specific Languages (DSLs) for GPU Programming",
+    "text": "Domain-Specific Languages (DSLs) for GPU Programming",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#relevant-publications-and-tools-nvidia-research-citadel-jax-scaling-book-etc.",
+    "href": "index.html#relevant-publications-and-tools-nvidia-research-citadel-jax-scaling-book-etc.",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
+    "text": "Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#overview-of-hopper-architecture",
+    "href": "index.html#overview-of-hopper-architecture",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Overview of Hopper Architecture",
+    "text": "Overview of Hopper Architecture",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#overview-of-blackwell-architecture",
+    "href": "index.html#overview-of-blackwell-architecture",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Overview of Blackwell Architecture",
+    "text": "Overview of Blackwell Architecture",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#key-innovations-in-blackwell",
+    "href": "index.html#key-innovations-in-blackwell",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Key Innovations in Blackwell",
+    "text": "Key Innovations in Blackwell\n\nUltra Tensor Cores and New Precision Formats (FP8, FP4)\n\n\nTransformer Engine and FP4 Micro Scaling\n\n\nMulti-Die Chip Design and Interconnect (NVLink, NVSwitch)\n\n\nMemory System: HBM3e, L2 Cache, and Shared Memory",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#performancewatt-and-area-efficiency-considerations",
+    "href": "index.html#performancewatt-and-area-efficiency-considerations",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Performance/Watt and Area Efficiency Considerations",
+    "text": "Performance/Watt and Area Efficiency Considerations",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#summary-of-architectural-differences",
+    "href": "index.html#summary-of-architectural-differences",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Summary of Architectural Differences",
+    "text": "Summary of Architectural Differences",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#performance-per-watt",
+    "href": "index.html#performance-per-watt",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Performance per Watt",
+    "text": "Performance per Watt",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#compute-throughput-by-data-type",
+    "href": "index.html#compute-throughput-by-data-type",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Compute Throughput by Data Type",
+    "text": "Compute Throughput by Data Type",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#memory-bandwidth-and-arithmetic-intensity",
+    "href": "index.html#memory-bandwidth-and-arithmetic-intensity",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Memory Bandwidth and Arithmetic Intensity",
+    "text": "Memory Bandwidth and Arithmetic Intensity",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#power-thermal-design-and-silicon-area-constraints",
+    "href": "index.html#power-thermal-design-and-silicon-area-constraints",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Power, Thermal Design, and Silicon Area Constraints",
+    "text": "Power, Thermal Design, and Silicon Area Constraints",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#efficiency-bottlenecks-from-memory-bound-to-compute-bound",
+    "href": "index.html#efficiency-bottlenecks-from-memory-bound-to-compute-bound",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Efficiency Bottlenecks: From Memory Bound to Compute Bound",
+    "text": "Efficiency Bottlenecks: From Memory Bound to Compute Bound",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#introduction-to-gpu-dsls-for-performance",
+    "href": "index.html#introduction-to-gpu-dsls-for-performance",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Introduction to GPU DSLs for Performance",
+    "text": "Introduction to GPU DSLs for Performance",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#triton",
+    "href": "index.html#triton",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Triton",
+    "text": "Triton",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#thunderkittens-tk",
+    "href": "index.html#thunderkittens-tk",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "ThunderKittens (TK)",
+    "text": "ThunderKittens (TK)",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#tilelang",
+    "href": "index.html#tilelang",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "TileLang",
+    "text": "TileLang",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#cute-and-cutlass",
+    "href": "index.html#cute-and-cutlass",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Cute and CUTLASS",
+    "text": "Cute and CUTLASS",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#gluon",
+    "href": "index.html#gluon",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Gluon",
+    "text": "Gluon",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#pallas-and-the-jax-ml-scaling-framework",
+    "href": "index.html#pallas-and-the-jax-ml-scaling-framework",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Pallas and the JAX ML Scaling Framework",
+    "text": "Pallas and the JAX ML Scaling Framework",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#summary-dsls-as-enablers-of-architectural-efficiency",
+    "href": "index.html#summary-dsls-as-enablers-of-architectural-efficiency",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Summary: DSLs as Enablers of Architectural Efficiency",
+    "text": "Summary: DSLs as Enablers of Architectural Efficiency",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#objectives-of-benchmarking",
+    "href": "index.html#objectives-of-benchmarking",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Objectives of Benchmarking",
+    "text": "Objectives of Benchmarking",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#hardware-platforms-and-specifications",
+    "href": "index.html#hardware-platforms-and-specifications",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Hardware Platforms and Specifications",
+    "text": "Hardware Platforms and Specifications\n\nHopper H100\n\n\nBlackwell B200",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#software-tools-and-libraries-used",
+    "href": "index.html#software-tools-and-libraries-used",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Software Tools and Libraries Used",
+    "text": "Software Tools and Libraries Used",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#microbenchmark-design-gemm-kernel-implementations",
+    "href": "index.html#microbenchmark-design-gemm-kernel-implementations",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Microbenchmark Design: GEMM Kernel Implementations",
+    "text": "Microbenchmark Design: GEMM Kernel Implementations",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#measurement-techniques",
+    "href": "index.html#measurement-techniques",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Measurement Techniques",
+    "text": "Measurement Techniques\n\nThroughput (FLOP/s)\n\n\nPower Consumption and Efficiency\n\n\nMemory Bandwidth",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#ensuring-fairness-and-reproducibility",
+    "href": "index.html#ensuring-fairness-and-reproducibility",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Ensuring Fairness and Reproducibility",
+    "text": "Ensuring Fairness and Reproducibility",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#performance-comparison-across-data-types",
+    "href": "index.html#performance-comparison-across-data-types",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Performance Comparison Across Data Types",
+    "text": "Performance Comparison Across Data Types",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#analysis-of-performance-per-watt",
+    "href": "index.html#analysis-of-performance-per-watt",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Analysis of Performance per Watt",
+    "text": "Analysis of Performance per Watt",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#memory-bandwidth-observations",
+    "href": "index.html#memory-bandwidth-observations",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Memory Bandwidth Observations",
+    "text": "Memory Bandwidth Observations",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#impact-of-tma-tensor-memory-accelerator",
+    "href": "index.html#impact-of-tma-tensor-memory-accelerator",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Impact of TMA (Tensor Memory Accelerator)",
+    "text": "Impact of TMA (Tensor Memory Accelerator)",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#roofline-analysis-compute-vs-memory-bound",
+    "href": "index.html#roofline-analysis-compute-vs-memory-bound",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Roofline Analysis: Compute vs Memory Bound",
+    "text": "Roofline Analysis: Compute vs Memory Bound",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#real-world-relevance-case-study-on-transformer-inferencetraining",
+    "href": "index.html#real-world-relevance-case-study-on-transformer-inferencetraining",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Real-World Relevance: Case Study on Transformer Inference/Training",
+    "text": "Real-World Relevance: Case Study on Transformer Inference/Training",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#discussion-of-bottlenecks-and-architectural-impact",
+    "href": "index.html#discussion-of-bottlenecks-and-architectural-impact",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Discussion of Bottlenecks and Architectural Impact",
+    "text": "Discussion of Bottlenecks and Architectural Impact",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#summary-of-findings",
+    "href": "index.html#summary-of-findings",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Summary of Findings",
+    "text": "Summary of Findings",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#implications-for-hardwaresoftware-co-design",
+    "href": "index.html#implications-for-hardwaresoftware-co-design",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Implications for Hardware–Software Co-Design",
+    "text": "Implications for Hardware–Software Co-Design",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#relevance-to-edge-computing",
+    "href": "index.html#relevance-to-edge-computing",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Relevance to Edge Computing",
+    "text": "Relevance to Edge Computing",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#future-work-and-doctoral-research-directions",
+    "href": "index.html#future-work-and-doctoral-research-directions",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Future Work and Doctoral Research Directions",
+    "text": "Future Work and Doctoral Research Directions",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#appendix-a-experimental-scripts-and-kernel-listings",
+    "href": "index.html#appendix-a-experimental-scripts-and-kernel-listings",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Appendix A: Experimental Scripts and Kernel Listings",
+    "text": "Appendix A: Experimental Scripts and Kernel Listings",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#appendix-b-extended-benchmark-results",
+    "href": "index.html#appendix-b-extended-benchmark-results",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Appendix B: Extended Benchmark Results",
+    "text": "Appendix B: Extended Benchmark Results",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
+    "objectID": "index.html#appendix-c-tma-and-gemm-intrinsics-documentation",
+    "href": "index.html#appendix-c-tma-and-gemm-intrinsics-documentation",
+    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "section": "Appendix C: TMA and GEMM Intrinsics Documentation",
+    "text": "Appendix C: TMA and GEMM Intrinsics Documentation",
+    "crumbs": [
+      "Abstract"
+    ]
+  },
+  {
     "objectID": "abstract.html",
     "href": "abstract.html",
     "title": "The Anatomy of an Efficient Blackwell GEMM",
@@ -16,7 +506,7 @@
     "section": "",
     "text": "Acknowledgements {.unnumbered}\nI would like to thank my supervisors at the University of Sevilla…",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>acknowledgements.html</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>acknowledgements.html</span>"
     ]
   }
 ]
