@@ -1,0 +1,6 @@
+# Chapter 4 – Metrics for GPU Efficiency
+## Performance per Watt
+## Compute Throughput by Data Type
+## Memory Bandwidth and Arithmetic Intensity
+## Power, Thermal Design, and Silicon Area Constraints
+## Efficiency Bottlenecks: From Memory Bound to Compute Bound

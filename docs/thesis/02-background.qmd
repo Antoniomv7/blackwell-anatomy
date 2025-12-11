@@ -1,0 +1,6 @@
+# Chapter 2 – Background and Related Work
+## Evolution of GPU Architectures: From Volta to Blackwell
+## Hardware–Software Co-Design: Principles and Applications
+## General Matrix-Matrix Multiplication (GEMM) in AI Workloads
+## Domain-Specific Languages (DSLs) for GPU Programming
+## Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)

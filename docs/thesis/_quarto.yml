@@ -5,40 +5,43 @@ project:
 book:
   title: "The Anatomy of an Efficient Blackwell GEMM"
   subtitle: "Microbenchmarking and Hardware-Software Co-Design for Edge Computing"
-  author: "Tu Nombre"
-  date: "2025"
+  author: "Antonio Moral Villarín"
+  date: "2026"
   chapters:
     - abstract.qmd
-    - index.qmd
     - acknowledgements.qmd
-    - intro.qmd
-    - background.qmd
-    - architecture.qmd
-    - metrics.qmd
-    - programming.qmd
-    - methodology.qmd
-    - results.qmd
-    - conclusion.qmd
-    - references.qmd
-    - appendices.qmd
+    - index.qmd
+    - 01-intro.qmd
+    - 02-background.qmd
+    - 03-architecture.qmd
+    - 04-metrics.qmd
+    - 05-programming.qmd
+    - 06-methodology.qmd
+    - 07-results.qmd
+    - 08-conclusion.qmd
+    - 09-references.qmd
+    - 10-appendices.qmd
 
 bibliography: references.bib
 
 format:
   pdf:
-    documentclass: scrreprt # KOMA-Script Report (Estándar europeo para tesis)
+    documentclass: scrreprt # KOMA-Script Report (European standard for theses)
     classoption: [a4paper, 11pt]
     geometry:
       - top=2.5cm
       - bottom=2.5cm
       - left=3cm
       - right=2cm
-    lof: true # List of Figures automática
-    lot: true # List of Tables automática
+    lof: true # List of Figures automatic
+    lot: true # List of Tables automatic
     toc: true
     number-sections: true
     colorlinks: true
     code-line-numbers: true
+    include-before-body: 
+      text: |
+        \pagenumbering{roman} % Roman numerals for front matter
     include-in-header:
       text: |
         \usepackage{float}

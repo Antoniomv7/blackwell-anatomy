@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>programming – The Anatomy of an Efficient Blackwell GEMM</title>
+<title>9&nbsp; Chapter 6 – Methodology and Experimental Setup – The Anatomy of an Efficient Blackwell GEMM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./methodology.html" rel="next">
-<link href="./metrics.html" rel="prev">
+<link href="./07-results.html" rel="next">
+<link href="./05-programming.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./programming.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">programming.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-methodology.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chapter 6 – Methodology and Experimental Setup</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -116,74 +116,74 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Abstract</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">acknowledgements.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">intro.html</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./background.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">background.html</span></span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 1 – Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">architecture.html</span></span></a>
+  <a href="./02-background.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 2 – Background and Related Work</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">metrics.html</span></span></a>
+  <a href="./03-architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./programming.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">programming.html</span></span></a>
+  <a href="./04-metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 4 – Metrics for GPU Efficiency</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methodology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">methodology.html</span></span></a>
+  <a href="./05-programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 5 – Programming Models for Modern GPUs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./results.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">results.html</span></span></a>
+  <a href="./06-methodology.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chapter 6 – Methodology and Experimental Setup</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">conclusion.html</span></span></a>
+  <a href="./07-results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Chapter 7 – Results and Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">references.html</span></span></a>
+  <a href="./08-conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Chapter 8 – Conclusions and Future Work</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">appendices.html</span></span></a>
+  <a href="./09-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-appendices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
   </div>
 </li>
     </ul>
@@ -191,15 +191,86 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objectives-of-benchmarking" id="toc-objectives-of-benchmarking" class="nav-link active" data-scroll-target="#objectives-of-benchmarking"><span class="header-section-number">9.1</span> Objectives of Benchmarking</a></li>
+  <li><a href="#hardware-platforms-and-specifications" id="toc-hardware-platforms-and-specifications" class="nav-link" data-scroll-target="#hardware-platforms-and-specifications"><span class="header-section-number">9.2</span> Hardware Platforms and Specifications</a>
+  <ul class="collapse">
+  <li><a href="#hopper-h100" id="toc-hopper-h100" class="nav-link" data-scroll-target="#hopper-h100"><span class="header-section-number">9.2.1</span> Hopper H100</a></li>
+  <li><a href="#blackwell-b200" id="toc-blackwell-b200" class="nav-link" data-scroll-target="#blackwell-b200"><span class="header-section-number">9.2.2</span> Blackwell B200</a></li>
+  </ul></li>
+  <li><a href="#software-tools-and-libraries-used" id="toc-software-tools-and-libraries-used" class="nav-link" data-scroll-target="#software-tools-and-libraries-used"><span class="header-section-number">9.3</span> Software Tools and Libraries Used</a></li>
+  <li><a href="#microbenchmark-design-gemm-kernel-implementations" id="toc-microbenchmark-design-gemm-kernel-implementations" class="nav-link" data-scroll-target="#microbenchmark-design-gemm-kernel-implementations"><span class="header-section-number">9.4</span> Microbenchmark Design: GEMM Kernel Implementations</a></li>
+  <li><a href="#measurement-techniques" id="toc-measurement-techniques" class="nav-link" data-scroll-target="#measurement-techniques"><span class="header-section-number">9.5</span> Measurement Techniques</a>
+  <ul class="collapse">
+  <li><a href="#throughput-flops" id="toc-throughput-flops" class="nav-link" data-scroll-target="#throughput-flops"><span class="header-section-number">9.5.1</span> Throughput (FLOP/s)</a></li>
+  <li><a href="#power-consumption-and-efficiency" id="toc-power-consumption-and-efficiency" class="nav-link" data-scroll-target="#power-consumption-and-efficiency"><span class="header-section-number">9.5.2</span> Power Consumption and Efficiency</a></li>
+  <li><a href="#memory-bandwidth" id="toc-memory-bandwidth" class="nav-link" data-scroll-target="#memory-bandwidth"><span class="header-section-number">9.5.3</span> Memory Bandwidth</a></li>
+  </ul></li>
+  <li><a href="#ensuring-fairness-and-reproducibility" id="toc-ensuring-fairness-and-reproducibility" class="nav-link" data-scroll-target="#ensuring-fairness-and-reproducibility"><span class="header-section-number">9.6</span> Ensuring Fairness and Reproducibility</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chapter 6 – Methodology and Experimental Setup</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="objectives-of-benchmarking" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="objectives-of-benchmarking"><span class="header-section-number">9.1</span> Objectives of Benchmarking</h2>
+</section>
+<section id="hardware-platforms-and-specifications" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="hardware-platforms-and-specifications"><span class="header-section-number">9.2</span> Hardware Platforms and Specifications</h2>
+<section id="hopper-h100" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="hopper-h100"><span class="header-section-number">9.2.1</span> Hopper H100</h3>
+</section>
+<section id="blackwell-b200" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="blackwell-b200"><span class="header-section-number">9.2.2</span> Blackwell B200</h3>
+</section>
+</section>
+<section id="software-tools-and-libraries-used" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="software-tools-and-libraries-used"><span class="header-section-number">9.3</span> Software Tools and Libraries Used</h2>
+</section>
+<section id="microbenchmark-design-gemm-kernel-implementations" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="microbenchmark-design-gemm-kernel-implementations"><span class="header-section-number">9.4</span> Microbenchmark Design: GEMM Kernel Implementations</h2>
+</section>
+<section id="measurement-techniques" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="measurement-techniques"><span class="header-section-number">9.5</span> Measurement Techniques</h2>
+<section id="throughput-flops" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="throughput-flops"><span class="header-section-number">9.5.1</span> Throughput (FLOP/s)</h3>
+</section>
+<section id="power-consumption-and-efficiency" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="power-consumption-and-efficiency"><span class="header-section-number">9.5.2</span> Power Consumption and Efficiency</h3>
+</section>
+<section id="memory-bandwidth" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="memory-bandwidth"><span class="header-section-number">9.5.3</span> Memory Bandwidth</h3>
+</section>
+</section>
+<section id="ensuring-fairness-and-reproducibility" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="ensuring-fairness-and-reproducibility"><span class="header-section-number">9.6</span> Ensuring Fairness and Reproducibility</h2>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -604,13 +675,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./metrics.html" class="pagination-link" aria-label="metrics.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">metrics.html</span></span>
+      <a href="./05-programming.html" class="pagination-link" aria-label="Chapter 5 – Programming Models for Modern GPUs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 5 – Programming Models for Modern GPUs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./methodology.html" class="pagination-link" aria-label="methodology.html">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">methodology.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-results.html" class="pagination-link" aria-label="Chapter 7 – Results and Discussion">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Chapter 7 – Results and Discussion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
