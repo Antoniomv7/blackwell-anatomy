@@ -2,116 +2,419 @@
 # Bibliography for  Chapter 1
 ## Motivation, Context and Hardware–Software Co-Design
 
-@article{Huang2025,
-  author    = {Centific (Jensen Huang quote)},
-  title     = {{NVIDIA expands the boundaries of AI at GTC 2025}},
-  journal   = {Centific Blog},
-  year      = {2025},
-  url       = {https://centific.com/blog/nvidia-expands-the-boundaries-of-ai-at-gtc-2025},
-  note      = {Accessed 12 Dec 2025}
+@article{jouppi2017datacenter,
+  author={Jouppi, Norman P. and others},
+  journal={IEEE Computer},
+  title={In-Datacenter Performance Analysis of a Tensor Processing Unit},
+  year={2017},
+  volume={50},
+  number={2},
+  pages={58--68},
+  doi={10.1109/MC.2017.33}
 }
 
-@online{Patel2025,
-  author    = {Dylan Patel and Kimbo Chen},
-  title     = {{NVIDIA Tensor Core Evolution: From Volta to Blackwell}},
-  howpublished = {SemiAnalysis Newsletter},
-  year      = {2025},
-  url       = {https://newsletter.semianalysis.com/p/nvidia-tensor-core-evolution-from-volta-to-blackwell}
+@book{sze2020efficient,
+  title={Efficient Processing of Deep Neural Networks},
+  author={Sze, Vivienne and Chen, Yu-Hsin and Yang, Tien-Ju and Emer, Joel},
+  year={2020},
+  publisher={Morgan \& Claypool},
+  doi={10.2200/S01004ED1V01Y202004CAC050}
+}
+
+@article{esmaeilzadeh2011dark,
+  title={Dark silicon and the end of multicore scaling},
+  author={Esmaeilzadeh, Hadi and others},
+  journal={ACM SIGARCH Computer Architecture News},
+  volume={39},
+  number={3},
+  pages={365--376},
+  year={2011},
+  doi={10.1145/2024723.2000108}
+}
+
+@article{thompson2021computing,
+  title={Computing beyond Moore’s Law},
+  author={Thompson, Neil C. and Greenewald, Kristjan and Lee, Keeheon and Manso, Gabriel F.},
+  journal={Science},
+  volume={371},
+  number={6530},
+  pages={eaba7373},
+  year={2021},
+  doi={10.1126/science.aba7373}
+}
+
+@techreport{nvidia_hopper_whitepaper,
+  title={NVIDIA Hopper Architecture In-Depth},
+  author={{NVIDIA}},
+  year={2022},
+  institution={NVIDIA Corporation}
+}
+
+@techreport{nvidia_blackwell_whitepaper,
+  title={NVIDIA Blackwell Architecture},
+  author={{NVIDIA}},
+  year={2024},
+  institution={NVIDIA Corporation}
+}
+
+@article{tillet2019triton,
+  title={Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations},
+  author={Tillet, Philippe and Kung, H. T. and Cox, David},
+  journal={Proceedings of MLSys},
+  year={2019}
+}
+
+@online{jax_scaling_book,
+  title={The JAX ML Scaling Book},
+  author={{JAX Team}},
+  year={2023},
+  url={https://jax-ml.github.io/scaling-book/}
+}
+
+@article{sze2017efficient,
+  title={Efficient Processing of Deep Neural Networks: A Tutorial and Survey},
+  author={Sze, Vivienne and others},
+  journal={Proceedings of the IEEE},
+  volume={105},
+  number={12},
+  pages={2295--2329},
+  year={2017},
+  doi={10.1109/JPROC.2017.2761740}
+}
+
+@article{jouppi2023tenyears,
+  title={Ten Years of Tensor Processing Units},
+  author={Jouppi, Norman P. and others},
+  journal={Nature},
+  volume={624},
+  pages={41--51},
+  year={2023},
+  doi={10.1038/s41586-023-06777-1}
 }
 
 ## Challenges in Efficient Compute for AI and Edge Applications
 
-@article{CordovaCardenas2024EdgeAI,
-  author    = {C{\'o}rdova-C{\'a}rdenas, Ruth and Amor, Daniel and Guti{\'e}rrez, {\'A}lvaro},
-  title     = {Edge AI in Practice: A Survey and Deployment Framework for Neural Networks on Embedded Systems},
-  journal   = {Electronics},
-  volume    = {14},
-  number    = {24},
-  pages     = {4877},
-  year      = {2024},
-  doi       = {10.3390/electronics14244877},
-  url       = {https://www.mdpi.com/2079-9292/14/24/4877},
-  publisher = {MDPI}
+@article{williams2009roofline,
+  title={Roofline: An Insightful Visual Performance Model for Multicore Architectures},
+  author={Williams, Samuel and Waterman, Andrew and Patterson, David},
+  journal={Communications of the ACM},
+  volume={52},
+  number={4},
+  pages={65--76},
+  year={2009},
+  doi={10.1145/1498765.1498785}
 }
 
-@article{Chen2021,
-  author    = {Yanjiao Chen and Baolin Zheng and Zihan Zhang and Qian Wang and Chao Shen and Qiang Zhang},
-  title     = {{Deep Learning on Mobile and Embedded Devices: State-of-the-Art, Challenges, and Future Directions}},
-  journal   = {ACM Computing Surveys},
-  volume    = {53},
-  number    = {4},
-  pages     = {1--37},
-  year      = {2021},
-  doi       = {10.1145/3398209}
+@article{horowitz2014energy,
+  title={Computing’s Energy Problem (and What We Can Do About It)},
+  author={Horowitz, Mark},
+  journal={ISSCC Digest of Technical Papers},
+  pages={10--14},
+  year={2014},
+  doi={10.1109/ISSCC.2014.6757323}
 }
 
-
-
-@techreport{NvidiaBlackwell2025,
-  author    = {{NVIDIA Corporation}},
-  title     = {{NVIDIA RTX Blackwell GPU Architecture: Built for Neural Rendering}},
-  year      = {2025},
-  howpublished = {Tech. Brief (Online)},
-  url       = {https://images.nvidia.com/aem-dam/Solutions/geforce/blackwell/nvidia-rtx-blackwell-gpu-architecture.pdf}
+@article{chen2016eyeriss,
+  title={Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks},
+  author={Chen, Yu-Hsin and others},
+  journal={IEEE Journal of Solid-State Circuits},
+  volume={52},
+  number={1},
+  pages={127--138},
+  year={2016},
+  doi={10.1109/JSSC.2016.2616357}
 }
 
-@online{Exxact2025,
-  author    = {Exxact Corporation},
-  title     = {{Comparing NVIDIA Tensor Core GPUs: NVIDIA B300, B200 vs. H200, H100, A100}},
-  howpublished = {Exxact Blog},
-  year      = {2025},
-  url       = {https://www.exxactcorp.com/blog/hpc/comparing-nvidia-tensor-core-gpus}
+@article{micikevicius2018mixed,
+  title={Mixed Precision Training},
+  author={Micikevicius, Paulius and others},
+  journal={International Conference on Learning Representations (ICLR)},
+  year={2018}
 }
 
-@article{Jia2018,
-  author    = {Zhe Jia and Marco Maggioni and Benjamin Staiger and Daniele P. Scarpazza},
-  title     = {{Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking}},
-  journal   = {arXiv preprint arXiv:1804.06826},
-  year      = {2018}
+## Objectives and Scope of the Thesis
+
+## Methodology Overview
+
+## Structure of the Thesis
+
+# Bibliography for Chapter 2
+## Background and Related Work
+
+@misc{nvidiaVoltaWhitepaper2017,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Tesla V100 GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2017},
+  note         = {Retrieved from https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf}
 }
 
-@article{Luo2024,
-  author    = {W. Luo and R. Fan and Z. Li and D. An and X. Chu},
-  title     = {{Benchmarking and Dissecting the NVIDIA Hopper GPU Architecture}},
-  journal   = {arXiv preprint arXiv:2402.13499},
-  year      = {2024}
+@misc{nvidiaAmpereWhitepaper2020,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA A100 Tensor Core GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2020},
+  note         = {Retrieved from https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf}
 }
 
-@misc{JAXScalingBook,
-  author    = {{Google JAX Team}},
-  title     = {{How to Scale Your Model -- JAX Scaling Book}},
-  year      = {2023},
-  howpublished = {\url{https://jax-ml.github.io/scaling-book/}}
+@misc{nvidiaHopperInDepthBlog2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Hopper Architecture In-Depth},
+  howpublished = {NVIDIA Technical Blog},
+  year         = {2022},
+  note         = {Retrieved from https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/}
 }
 
-
-
-
-
-
-@techreport{NVIDIABlackwell2024,
-  author      = {{NVIDIA Corporation}},
-  title       = {NVIDIA Blackwell GPU Architecture},
-  institution = {NVIDIA},
-  year        = {2024},
-  url         = {https://www.nvidia.com/en-us/data-center/blackwell/},
-  note        = {Technical Whitepaper}
+@misc{nvidiaH100Whitepaper2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA H100 Tensor Core GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2022},
+  note         = {Retrieved from https://www.advancedclustering.com/wp-content/uploads/2022/03/gtc22-whitepaper-hopper.pdf}
 }
 
-@online{SemiAnalysisTensorCores2025,
-  author    = {Dylan Patel and Kimbo Chen},
-  title     = {NVIDIA Tensor Core Evolution: From Volta to Blackwell},
-  year      = {2025},
-  url       = {https://newsletter.semianalysis.com/p/nvidia-tensor-core-evolution-from-volta-to-blackwell},
-  note      = {SemiAnalysis}
+@misc{nvidiaBlackwellArchitecturePage,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Blackwell Architecture},
+  howpublished = {NVIDIA Technology Overview},
+  year         = {2025},
+  note         = {Retrieved from https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/}
 }
 
+@misc{nvidiaNVFP4Blog2025,
+  author       = {{NVIDIA}},
+  title        = {Introducing NVFP4 for Efficient and Accurate Low-Precision Inference},
+  howpublished = {NVIDIA Technical Blog},
+  year         = {2025},
+  note         = {Retrieved from https://developer.nvidia.com/blog/introducing-nvfp4-for-efficient-and-accurate-low-precision-inference/}
+}
 
+@misc{bohr2007dennard,
+  author       = {Bohr, Mark},
+  title        = {A 30 Year Retrospective on Dennard's MOSFET Scaling Paper},
+  howpublished = {IEEE},
+  year         = {2007},
+  note         = {Retrieved from https://users.cs.duke.edu/~lkw34/papers/dennard-ieee2007.pdf}
+}
 
-@online{HuangGTC2025,
-  author    = {Jensen Huang},
-  title     = {Keynote: Extreme Hardware--Software Co-Design for AI},
-  year      = {2025},
-  url       = {https://www.nvidia.com/gtc/},
-  note      = {NVIDIA GTC Keynote}
+## Programming Models and Software Stacks for Modern GPUs
+
+@misc{nvidiaCUDAProgrammingGuide,
+  author       = {{NVIDIA}},
+  title        = {CUDA C++ Programming Guide},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/cuda/cuda-c-programming-guide/}
+}
+
+@misc{nvidiaCuBLASGuide,
+  author       = {{NVIDIA}},
+  title        = {cuBLAS Library User Guide},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/cuda/cublas/}
+}
+
+@misc{nvidiaCuDNNDocs,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA cuDNN Documentation},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/deeplearning/cudnn/}
+}
+
+@misc{nvidiaTransformerEngineDocs,
+  author       = {{NVIDIA}},
+  title        = {Transformer Engine Documentation},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/deeplearning/transformer-engine/}
+}
+
+@misc{jaxScalingBook2025,
+  author       = {Austin, Jacob and Douglas, Sholto and Frostig, Roy and others},
+  title        = {How to Scale Your Model},
+  howpublished = {Online Book},
+  year         = {2025},
+  publisher    = {Google DeepMind},
+  note         = {Retrieved from https://jax-ml.github.io/scaling-book/}
+}
+
+# Hardware-Software Co-Design Case Studies
+
+@misc{nvidiaVoltaWhitepaper2017,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Tesla V100 GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2017},
+  note         = {Retrieved from https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf}
+}
+
+@misc{nvidiaH100Whitepaper2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA H100 Tensor Core GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2022},
+  note         = {Retrieved from https://www.advancedclustering.com/wp-content/uploads/2022/03/gtc22-whitepaper-hopper.pdf}
+}
+
+@misc{nvidiaCuBLASGuide,
+  author       = {{NVIDIA}},
+  title        = {cuBLAS Library User Guide},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/cuda/cublas/}
+}
+
+@misc{nvidiaTransformerEngineDocs,
+  author       = {{NVIDIA}},
+  title        = {Transformer Engine Documentation},
+  howpublished = {NVIDIA Documentation},
+  year         = {2025},
+  note         = {Retrieved from https://docs.nvidia.com/deeplearning/transformer-engine/}
+}
+
+@misc{nvidiaBlackwellArchitecturePage,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Blackwell Architecture},
+  howpublished = {NVIDIA Technology Overview},
+  year         = {2025},
+  note         = {Retrieved from https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/}
+}
+
+@misc{scalingBook2025,
+  author       = {Austin, Jacob and Douglas, Sholto and Frostig, Roy and others},
+  title        = {How to Scale Your Model},
+  howpublished = {Online Book},
+  year         = {2025},
+  publisher    = {Google DeepMind},
+  note         = {Retrieved from https://jax-ml.github.io/scaling-book/}
+}
+
+## General Matrix-Matrix Multiplication (GEMM) in AI Workloads
+
+@article{williams2009roofline,
+  author  = {Williams, Samuel and Waterman, Andrew and Patterson, David},
+  title   = {Roofline: An Insightful Visual Performance Model for Multicore Architectures},
+  journal = {Communications of the ACM},
+  volume  = {52},
+  number  = {4},
+  pages   = {65--76},
+  year    = {2009},
+  doi     = {10.1145/1498765.1498785}
+}
+
+@misc{nvidiaVoltaWhitepaper2017,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Tesla V100 GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2017},
+  note         = {Retrieved from https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf}
+}
+
+@misc{nvidiaH100Whitepaper2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA H100 Tensor Core GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2022},
+  note         = {Retrieved from https://www.advancedclustering.com/wp-content/uploads/2022/03/gtc22-whitepaper-hopper.pdf}
+}
+
+@misc{nvidiaHopperInDepthBlog2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Hopper Architecture In-Depth},
+  howpublished = {NVIDIA Technical Blog},
+  year         = {2022},
+  note         = {Retrieved from https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/}
+}
+
+@misc{nvidiaBlackwellArchitecturePage,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Blackwell Architecture},
+  howpublished = {NVIDIA Technology Overview},
+  year         = {2025},
+  note         = {Retrieved from https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/}
+}
+
+@misc{nvidiaNVFP4Blog2025,
+  author       = {{NVIDIA}},
+  title        = {Introducing NVFP4 for Efficient and Accurate Low-Precision Inference},
+  howpublished = {NVIDIA Technical Blog},
+  year         = {2025},
+  note         = {Retrieved from https://developer.nvidia.com/blog/introducing-nvfp4-for-efficient-and-accurate-low-precision-inference/}
+}
+
+## Domain-Specific Languages (DSLs) for GPU Programming
+
+@article{tritonLang2021,
+  author  = {Tillet, Philippe and Kung, H. T. and Cox, David},
+  title   = {Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations},
+  journal = {Proceedings of MLSys},
+  year    = {2021}
+}
+
+@misc{cutlass2023,
+  author       = {{NVIDIA}},
+  title        = {CUTLASS: CUDA Templates for Linear Algebra Subroutines},
+  howpublished = {GitHub Repository},
+  year         = {2023},
+  note         = {Retrieved from https://github.com/NVIDIA/cutlass}
+}
+
+@misc{pallas2023,
+  author       = {{Google}},
+  title        = {Pallas: A JAX Kernel Language},
+  howpublished = {Technical Documentation},
+  year         = {2023},
+  note         = {Retrieved from https://jax.readthedocs.io/en/latest/pallas.html}
+}
+
+@misc{tilelang,
+  author       = {Anonymous},
+  title        = {TileLang: A Tiling-Centric DSL for High-Performance GPU Kernels},
+  howpublished = {Technical Report / Project Documentation},
+  year         = {2024}
+}
+
+@misc{tensorKernelTK,
+  author       = {Anonymous},
+  title        = {TK: Tensor Kernel Programming Model},
+  howpublished = {Project Documentation},
+  year         = {2024}
+}
+
+@misc{gluonDSL,
+  author       = {Anonymous},
+  title        = {Gluon: A DSL for Hardware-Aware Tensor Computation},
+  howpublished = {Project Documentation},
+  year         = {2024}
+}
+
+# Roofline Model and Performance Metrics
+
+@article{williams2009roofline,
+  author  = {Williams, Samuel and Waterman, Andrew and Patterson, David},
+  title   = {Roofline: An Insightful Visual Performance Model for Multicore Architectures},
+  journal = {Communications of the ACM},
+  volume  = {52},
+  number  = {4},
+  pages   = {65--76},
+  year    = {2009},
+  doi     = {10.1145/1498765.1498785}
+}
+
+@misc{nvidiaH100Whitepaper2022,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA H100 Tensor Core GPU Architecture},
+  howpublished = {Whitepaper},
+  year         = {2022},
+  note         = {Retrieved from https://www.advancedclustering.com/wp-content/uploads/2022/03/gtc22-whitepaper-hopper.pdf}
+}
+
+@misc{nvidiaBlackwellArchitecturePage,
+  author       = {{NVIDIA}},
+  title        = {NVIDIA Blackwell Architecture},
+  howpublished = {NVIDIA Technology Overview},
+  year         = {2025},
+  note         = {Retrieved from https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/}
 }

@@ -5,3 +5,4 @@ Important to mention:
 Numerical precission, stability, and robust Execution
 - Energy efficiency and thermal constraints
 - Lack of transparent, fine-grained performance characterization
+- Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)

@@ -1,6 +1,400 @@
 # Chapter 2 – Background and Related Work
+
+The rapid evolution of artificial intelligence workloads over the last decade has fundamentally reshaped the design space of high-performance and embedded computing systems. GPUs, originally conceived as fixed-function graphics accelerators, have progressively evolved into highly programmable, throughput-oriented processors optimized for data-parallel workloads. This evolution has been driven not only by raw performance demands, but by the changing **computational structure of AI models**, the growing dominance of data movement and energy constraints, and the breakdown of traditional scaling laws at the device level.
+
+This chapter provides the architectural background necessary to contextualize the experimental analysis presented later in this thesis. In particular, it traces the evolution of NVIDIA GPU architectures from Volta to Blackwell, emphasizing how each generation introduces architectural mechanisms explicitly designed to address emerging limitations in efficiency, scalability, and programmability. The goal is to motivate, from a micro- and nanoelectronic perspective, **why new architectures are required**, and why incremental improvements are insufficient to sustain AI performance growth—especially with relevance to Edge AI constraints.
+
 ## Evolution of GPU Architectures: From Volta to Blackwell
-## Hardware–Software Co-Design: Principles and Applications
+
+### Volta: Tensor Cores and the Shift Toward AI-Centric Design
+
+The introduction of the Volta architecture marked a structural inflection point in GPU design. While earlier architectures primarily focused on graphics and general-purpose throughput, Volta (V100) was the first NVIDIA GPU to explicitly integrate **Tensor Cores**, specialized units designed to accelerate dense matrix-matrix multiplication (GEMM) with mixed precision arithmetic. This design decision reflected the recognition that AI workloads—particularly deep neural networks—are dominated by linear algebra primitives rather than traditional scalar or vector operations [@nvidiaVoltaWhitepaper2017].
+
+From a microarchitectural standpoint, Tensor Cores represented a move toward **domain-specific acceleration** within a general-purpose framework. Instead of relying solely on CUDA cores executing fused multiply–add instructions, Volta introduced wide, deeply pipelined datapaths optimized for matrix operations. This significantly improved throughput and energy efficiency for AI workloads, but also established a new dependency: software had to be explicitly adapted to exploit these units, initiating a tighter coupling between architecture and programming models.
+
+### Turing and Ampere: Maturation and Generalization of Tensor Acceleration
+
+Subsequent architectures, notably Turing and Ampere, refined and generalized the Tensor Core concept. Ampere (A100) expanded Tensor Core support to additional precisions (TF32, BF16) and improved memory hierarchy characteristics, including larger caches and higher-bandwidth memory subsystems [@nvidiaAmpereWhitepaper2020].
+
+These changes addressed a growing mismatch between compute capability and data movement. As AI models increased in size and depth, memory bandwidth and latency increasingly constrained performance, reinforcing the insight that **raw compute scaling alone is insufficient**. From a design perspective, this period reflects an architectural response to the early manifestations of the memory wall in AI workloads, with incremental improvements in on-chip storage and off-chip bandwidth.
+
+However, despite these advances, Ampere largely preserved the existing execution and programming paradigms. While effective for data center workloads, this continuity limited the ability to exploit more aggressive forms of parallelism and asynchronous execution, particularly under strict power and latency constraints relevant to Edge AI.
+
+### Hopper: Asynchronous Execution and Data Movement Awareness
+
+The Hopper architecture (H100) represents a qualitative shift from compute-centric optimization toward **data-movement-aware architecture**. While Hopper continues to enhance Tensor Core throughput and precision support (including FP8), its most significant innovations address how data is transferred, scheduled, and synchronized across the chip [@nvidiaHopperInDepthBlog2022; @nvidiaH100Whitepaper2022].
+
+Key features such as **thread block clusters** and the **Tensor Memory Accelerator (TMA)** enable more explicit control over data movement between global memory and shared memory, allowing software to overlap computation and communication more effectively. From a microelectronic standpoint, this reflects an architectural acknowledgment that memory accesses—not arithmetic—dominate both latency and energy consumption.
+
+Hopper therefore deepens the hardware–software contract: performance is no longer achieved automatically by launching enough threads, but by structuring computation to align with architectural primitives. This shift is particularly relevant for microbenchmarking studies, as it exposes how architectural features translate into achievable efficiency only under specific software conditions.
+
+### Blackwell: Architecture for Scaling, Efficiency, and Reduced Precision
+
+Blackwell (B200) extends the Hopper philosophy further, motivated by the explosive growth of large language models (LLMs) and *Mixture-of-Experts* architectures. These models stress not only compute and memory, but also **system-level scalability and energy efficiency**, pushing existing architectural paradigms to their limits [@nvidiaBlackwellArchitecturePage].
+
+A defining characteristic of Blackwell is its support for more aggressive reduced-precision formats, including FP4 with microscaling (e.g., NVFP4), alongside second-generation Transformer Engine support [@nvidiaNVFP4Blog2025]. These formats significantly reduce data movement and storage requirements, directly addressing energy and bandwidth constraints. However, they also impose stringent requirements on numerical handling, accumulation, and software tooling.
+
+From a design perspective, Blackwell illustrates why new architectures are necessary: emerging AI workloads cannot be efficiently mapped onto legacy datapaths, memory organizations, or precision assumptions without incurring unacceptable inefficiencies. Supporting FP4-scale computation efficiently requires rethinking datapath widths, register file organization, memory packing, and error management—decisions that must be made at the micro- and nanoelectronic design level.
+
+### Why New Architectures Are Necessary
+
+The progression from Volta to Blackwell highlights a fundamental conclusion: **architectural evolution is driven less by peak performance targets and more by efficiency, scalability, and workload structure**. Several converging factors necessitate new architectures:
+
+1. **Breakdown of traditional scaling laws**, which prevents frequency or voltage scaling from delivering “free” performance gains [@bohr2007dennard].
+2. **Dominance of data movement costs**, making memory hierarchy and interconnect design central to performance and energy efficiency.
+3. **Emergence of new numerical formats**, which require native hardware support to be both efficient and numerically robust.
+4. **Increasing software complexity**, which demands architectures that expose controllable primitives for scheduling and data movement rather than opaque execution.
+
+These pressures are not limited to data centers. In Edge AI, where power, area, and thermal budgets are far tighter, the inefficiencies tolerated in large systems become prohibitive. As a result, insights gained from architectures such as Hopper and Blackwell are directly relevant to the design of future edge accelerators, reinforcing the importance of micro- and nanoelectronic expertise in shaping next-generation AI systems.
+
+## Programming Models and Software Stacks for Modern GPUs
+
+As GPU architectures have evolved from general-purpose throughput processors to highly specialized accelerators for AI, the **programming models and software stacks** have become a decisive factor in determining achievable performance and efficiency. Architectural features such as Tensor Cores, asynchronous data movement engines, and reduced-precision datapaths only deliver their theoretical benefits if they are explicitly exposed and exploited by software. Consequently, the evolution of GPU programming models mirrors the architectural transition discussed in Section 2.1, reinforcing the necessity of **hardware–software co-design**.
+
+This section reviews the evolution of GPU programming abstractions and software ecosystems—from CUDA and low-level libraries to modern AI-centric frameworks—and explains why increasingly complex software stacks are required to fully utilize architectures such as Hopper and Blackwell.
+
+### CUDA as the Foundation: Explicit Parallelism and Memory Hierarchy
+
+CUDA remains the foundational programming model for NVIDIA GPUs. Its design exposes a hierarchical execution and memory model (threads, warps, thread blocks; registers, shared memory, global memory) that maps closely to GPU microarchitecture. This explicitness has been instrumental in enabling high performance, but it also places a significant burden on the programmer or compiler to manage locality, synchronization, and parallelism efficiently [@nvidiaCUDAProgrammingGuide].
+
+From a micro- and nanoelectronic perspective, CUDA’s memory hierarchy abstraction directly reflects physical design trade-offs: shared memory corresponds to on-chip SRAM with low latency and high energy efficiency, while global memory accesses map to off-chip DRAM or HBM with far higher energy cost. As architectures scale, the gap between these levels widens, making correct software usage increasingly critical.
+
+While CUDA has remained relatively stable conceptually, each new architecture extends it with additional primitives (e.g., warp-level operations, asynchronous copies, cluster-level execution). These extensions illustrate a key point: **architectural innovation increasingly requires new software constructs**, rather than transparent performance gains.
+
+### Library-Centric Optimization: cuBLAS, cuDNN, and Kernel Specialization
+
+For most AI practitioners, direct CUDA kernel development is abstracted away through highly optimized libraries such as **cuBLAS** (dense linear algebra) and **cuDNN** (deep neural networks). These libraries encode architecture-specific knowledge—tiling strategies, memory layouts, pipeline scheduling—that would be impractical to reproduce manually for each application [@nvidiaCuBLASGuide; @nvidiaCuDNNDocs].
+
+From a co-design standpoint, these libraries serve as a critical translation layer between hardware capabilities and application-level performance. For example, Tensor Core utilization depends not only on hardware availability, but on precise data layouts, alignment, and precision choices implemented within library kernels. As new precisions (FP8, FP4) and data movement mechanisms (e.g., TMA) are introduced, library implementations must be redesigned accordingly.
+
+This dependency underscores why new architectures cannot rely on legacy software stacks: without corresponding library evolution, hardware innovations remain underutilized. In Edge AI contexts, where custom accelerators or constrained GPUs may lack mature libraries, this challenge is even more pronounced.
+
+### Transformer Engine and Precision-Aware Software
+
+The emergence of **Transformer Engine (TE)** represents a shift toward *architecture-aware, model-specific software*. Rather than providing generic linear algebra primitives, TE integrates numerical precision management, scaling policies, and kernel selection specifically optimized for Transformer workloads [@nvidiaTransformerEngineDocs].
+
+This approach reflects a deeper level of co-design. Hardware introduces new numerical formats (e.g., FP8 in Hopper, FP4/NVFP4 in Blackwell), while software encodes domain knowledge about which layers tolerate reduced precision and how to manage accumulation and scaling. From a microelectronic design viewpoint, this tight coupling justifies the inclusion of specialized datapaths and control logic that would be inefficient or unused under a generic programming model.
+
+In Edge AI, similar ideas are increasingly adopted through quantization-aware runtimes and compiler toolchains, reinforcing the notion that **precision is a cross-layer design decision**, not merely a software optimization.
+
+### Compiler and Framework-Level Abstractions: JAX, XLA, and Beyond
+
+At a higher abstraction level, modern AI development increasingly relies on compiler-driven frameworks such as **JAX**, PyTorch, and TensorFlow. These frameworks delegate kernel fusion, operation scheduling, and memory planning to intermediate representations and optimizing compilers (e.g., XLA), aiming to generate hardware-efficient code automatically [@jaxScalingBook2025].
+
+The JAX ML Scaling Book highlights how performance at scale depends on understanding both the algorithmic structure of models and the characteristics of the underlying hardware, including communication and memory costs. This reinforces a central theme of this thesis: **efficient execution emerges from coordinated decisions across abstraction layers**, not from isolated optimizations.
+
+However, compiler-based approaches also introduce challenges. Automatically generated code must target increasingly complex architectural features (asynchronous execution, cluster-level parallelism), which may be difficult to infer without explicit annotations or architectural hints. This tension motivates continued exposure of low-level primitives alongside high-level abstractions, particularly for research and microbenchmarking purposes.
+
+### Implications for Edge AI and Microbenchmarking
+
+For Edge AI, the complexity of modern software stacks presents both an opportunity and a challenge. On one hand, advanced libraries and compilers can hide architectural complexity and deliver efficient execution on constrained devices. On the other hand, limited resources and heterogeneous hardware often require explicit control and customization.
+
+In this context, **microbenchmarking** plays a crucial role. By isolating kernels such as GEMM and implementing them across different programming layers (raw CUDA, library calls, framework-generated code), it becomes possible to:
+
+* Quantify the gap between theoretical peak and achieved performance,
+* Identify whether bottlenecks arise from hardware limits or software inefficiencies,
+* Evaluate how architectural features are exposed—or obscured—by the software stack.
+
+These insights are essential for assessing the true impact of architectural innovations from Volta through Blackwell and for translating lessons learned to future edge-oriented accelerators.
+
+### Summary
+
+The evolution of GPU programming models and software stacks demonstrates that **new architectures demand new software**, not only to access additional performance, but to manage energy, data movement, and numerical precision effectively. From CUDA to Transformer Engine and compiler-driven frameworks, each layer embodies architectural assumptions and constraints rooted in micro- and nanoelectronic design.
+
+This chapter establishes the foundation for the experimental sections of this thesis, where microbenchmarking is used to analyze how well Hopper and Blackwell architectures—and their associated software ecosystems—realize their intended efficiency gains in practice.
+
+## Hardware-Software Co-Design Case Studies
+
+Having reviewed the architectural evolution of GPUs and the corresponding programming models, this section presents **concrete case studies** that exemplify how hardware–software co-design materializes in practice. Rather than abstract principles, these cases focus on representative AI workloads whose performance and efficiency are tightly coupled to microarchitectural features and software decisions. The selected case studies—GEMM, Transformer attention, and Mixture-of-Experts (MoE)—are directly relevant to modern AI systems and provide a clear bridge to the experimental microbenchmarking work developed later in this thesis.
+
+From a micro- and nanoelectronic perspective, these cases illustrate how architectural features justify their area, power, and design complexity **only when matched by appropriate software abstractions**. Conversely, they also show why new architectures are required when existing ones can no longer support emerging workload characteristics efficiently.
+
+### GEMM as the Canonical Co-Design Primitive
+
+General Matrix–Matrix Multiplication (GEMM) is the foundational kernel underlying the majority of compute in deep learning models, including linear layers, projections in attention mechanisms, and MLP blocks. Its importance stems from two properties: it is both **compute-intensive** and **highly sensitive to data movement**.
+
+From the hardware side, architectures from Volta onward have introduced Tensor Cores explicitly optimized for GEMM, enabling orders-of-magnitude higher throughput per watt compared to traditional SIMD execution [@nvidiaVoltaWhitepaper2017; @nvidiaH100Whitepaper2022]. However, achieving peak Tensor Core performance requires careful software orchestration:
+
+* Data must be tiled to fit on-chip memories (registers and shared memory),
+* Memory accesses must be aligned and coalesced,
+* Computation and data transfers must be overlapped to hide latency.
+
+These requirements highlight a central co-design insight: **Tensor Cores alone do not guarantee performance**. Only when software kernels are structured to match the microarchitectural pipeline—often through hand-tuned libraries such as cuBLAS—does the hardware investment translate into effective performance [@nvidiaCuBLASGuide].
+
+For this reason, GEMM is a primary target for microbenchmarking in this thesis. By driving the hardware toward the *compute-bound* Roofline regime, GEMM exposes the true computational ceiling of each architecture and reveals how features such as asynchronous data movement (e.g., TMA in Hopper) affect achievable efficiency.
+
+### Transformer Attention: Balancing Compute, Memory, and Precision
+
+While GEMM captures the compute core of AI workloads, **Transformer attention mechanisms** illustrate a more complex co-design challenge involving irregular data access patterns, intermediate storage, and numerical stability. Attention layers combine matrix multiplications with softmax operations, normalization, and reductions, making them sensitive to both compute throughput and memory bandwidth.
+
+Architecturally, Hopper and Blackwell address these challenges through a combination of higher Tensor Core throughput, expanded shared memory capabilities, and support for reduced-precision formats (FP8, FP4). However, attention performance depends critically on software techniques such as kernel fusion and precision-aware computation [@nvidiaTransformerEngineDocs].
+
+The introduction of optimized attention kernels (e.g., fused attention) demonstrates co-design in action: software reorganizes the computation to minimize memory traffic and exploit on-chip storage, while hardware provides sufficient flexibility and bandwidth to support these fused execution patterns. Without such coordination, attention layers quickly become *memory-bound*, negating the benefits of increased compute capacity.
+
+For Edge AI, attention exemplifies why architectural generality is insufficient. Efficient execution under tight power and latency constraints requires architectures that anticipate such fused, domain-specific workloads and software stacks capable of exploiting them.
+
+### Mixture-of-Experts: Sparsity, Routing, and System-Level Co-Design
+
+Mixture-of-Experts (MoE) models represent a further escalation in architectural demands. By activating only a subset of parameters per input, MoE introduces **conditional computation** and sparsity at scale. While this reduces average compute per token, it significantly increases pressure on memory systems and interconnects due to expert routing and load imbalance.
+
+From a hardware perspective, MoE stresses not only compute units but also memory bandwidth, cache coherence, and communication fabrics. Blackwell explicitly targets these workloads by combining aggressive reduced-precision formats with architectural features designed for large-scale parallelism and efficient data movement [@nvidiaBlackwellArchitecturePage].
+
+Software frameworks must orchestrate expert selection, data routing, and synchronization across devices, often relying on compiler-level transformations and runtime scheduling policies. The JAX ML Scaling Book discusses how such system-level considerations dominate performance as models scale, reinforcing that **co-design must extend beyond the chip to the system level** [@scalingBook2025].
+
+In Edge AI, MoE-inspired techniques (e.g., conditional execution, early exit networks) face similar challenges on a smaller scale. Efficient support for sparsity and conditional computation requires hardware that can rapidly gate activity and software that minimizes control and data movement overhead—capabilities that legacy architectures struggle to provide.
+
+### Lessons for Micro- and Nanoelectronic Design
+
+Across these case studies, several recurring themes emerge that are directly relevant to micro- and nanoelectronic design:
+
+1. **Specialization is unavoidable.** General-purpose execution units cannot efficiently sustain the performance and energy demands of modern AI workloads.
+2. **Data movement dominates energy and performance.** Architectural resources devoted to computation must be matched by proportional investment in memory hierarchy and interconnect design.
+3. **Precision is a hardware concern.** Supporting FP8 and FP4 efficiently requires dedicated datapaths and storage structures, not emulation on wider formats.
+4. **Software defines realizable efficiency.** Architectural features only justify their silicon cost when software exposes and exploits them effectively.
+
+These insights reinforce the central thesis motivation: new architectures such as Hopper and Blackwell are not incremental upgrades, but **necessary responses to fundamental shifts in workload structure and physical constraints**. Microbenchmarking GEMM and related kernels provides a rigorous methodology to evaluate how well these co-designed systems meet their goals.
+
+### Summary
+
+This section has demonstrated how hardware–software co-design manifests in concrete AI workloads, from the simplicity of GEMM to the system-level complexity of MoE models. These case studies motivate the experimental methodology adopted in this thesis and establish clear criteria for evaluating architectural effectiveness: not peak specifications, but achieved efficiency under realistic software execution.
+
 ## General Matrix-Matrix Multiplication (GEMM) in AI Workloads
+
+General Matrix–Matrix Multiplication (GEMM), defined as
+[
+\mathbf{C} = \alpha \mathbf{A}\mathbf{B} + \beta \mathbf{C},
+]
+is the fundamental computational primitive underpinning the majority of modern AI workloads. Despite its apparent simplicity, GEMM captures the essential tension between compute throughput, memory bandwidth, and numerical precision that defines efficient execution on contemporary accelerators. For this reason, GEMM serves not only as a building block for higher-level operations, but also as a **diagnostic kernel** for evaluating hardware–software co-design.
+
+In the context of this thesis, GEMM is used as the primary microbenchmark to analyze and compare NVIDIA Hopper and Blackwell architectures, as it directly exercises Tensor Cores, memory hierarchies, and reduced-precision datapaths.
+
+### GEMM as the Computational Core of AI Models
+
+Most layers in deep neural networks can be expressed as matrix multiplications. In Transformers, for example, GEMM dominates:
+
+* Linear projections for queries, keys, and values,
+* Feed-forward network (MLP) layers,
+* Output projections and embedding transformations.
+
+As a result, the performance and energy efficiency of GEMM strongly correlate with end-to-end model throughput and cost. This centrality has motivated decades of optimization research and has directly influenced accelerator architecture design. NVIDIA’s introduction of Tensor Cores in Volta and their subsequent evolution in Ampere, Hopper, and Blackwell reflect the recognition that **optimizing GEMM yields disproportionate benefits for AI workloads** [@nvidiaVoltaWhitepaper2017; @nvidiaH100Whitepaper2022].
+
+From a micro- and nanoelectronic perspective, GEMM is attractive because it exhibits high arithmetic intensity when data reuse is maximized, making it well suited for dense on-chip computation. However, achieving this theoretical advantage in practice requires careful coordination between hardware capabilities and software implementation.
+
+### Arithmetic Intensity and the Roofline Perspective
+
+The efficiency of GEMM can be formally analyzed using the Roofline model, which relates achieved performance to arithmetic intensity (operations per byte transferred) and available memory bandwidth [@williams2009roofline]. GEMM is one of the few kernels capable of reaching the *compute-bound* regime on modern GPUs, provided that data is sufficiently reused through blocking and tiling strategies.
+
+This property makes GEMM particularly valuable for architectural evaluation. If a well-optimized GEMM kernel fails to approach peak performance, the limiting factor is likely architectural (e.g., insufficient compute throughput, pipeline inefficiencies, or suboptimal memory hierarchy design) rather than algorithmic. Consequently, GEMM microbenchmarks are widely used to assess the *effective* peak performance of accelerators.
+
+In Edge AI scenarios, arithmetic intensity is often reduced due to smaller problem sizes and limited on-chip memory, increasing the likelihood of *memory-bound* execution. This reinforces the need for architectures and software stacks that can adapt GEMM execution strategies across a wide range of operating points.
+
+### Data Movement and Memory Hierarchy Considerations
+
+Although GEMM is compute-intensive in principle, its realized performance is highly sensitive to data movement. Efficient implementations rely on:
+
+* Blocking matrices to fit into registers and shared memory,
+* Reusing operands across multiple multiply–accumulate operations,
+* Overlapping data transfers with computation.
+
+From a hardware standpoint, this places stringent requirements on the memory hierarchy: sufficient register file bandwidth, low-latency shared memory, and high-throughput connections to off-chip memory (e.g., HBM). Hopper introduces explicit mechanisms, such as asynchronous memory operations and the Tensor Memory Accelerator (TMA), to reduce the overhead of moving data into on-chip storage [@nvidiaHopperInDepthBlog2022].
+
+However, these mechanisms are not transparent. Software must be structured to exploit them, which further strengthens the argument for GEMM as a co-design case study: its performance reflects not only raw hardware capability, but also the maturity and quality of the software stack.
+
+### Numerical Precision and Reduced-Precision GEMM
+
+Reduced-precision arithmetic is central to the efficiency of GEMM in AI workloads. Formats such as FP16, BF16, FP8, and FP4 reduce memory footprint and bandwidth requirements while increasing compute density. Tensor Cores are explicitly designed to accelerate GEMM using these formats, often accumulating results in higher precision to preserve numerical stability.
+
+Hopper mainstreamed FP8 GEMM for both training and inference, while Blackwell extends this approach to FP4 with microscaling (e.g., NVFP4), targeting further gains in performance and energy efficiency [@nvidiaNVFP4Blog2025; @nvidiaBlackwellArchitecturePage]. These developments illustrate why new architectures are necessary: supporting aggressive precision reduction efficiently requires dedicated datapaths, scaling logic, and software support.
+
+From a co-design perspective, numerical precision choices influence:
+
+* Datapath width and energy consumption at the circuit level,
+* Register and memory packing efficiency,
+* Kernel design and accumulation strategies in software.
+
+In Edge AI, where memory and power budgets are particularly constrained, reduced-precision GEMM is often the enabling factor for deploying non-trivial models on-device. However, ensuring robustness under quantization further emphasizes the need for end-to-end design.
+
+### GEMM as a Microbenchmarking Tool
+
+Beyond its role in applications, GEMM is uniquely suited as a **microbenchmark** for architectural analysis. Its regular structure allows precise control over problem size, data layout, and precision, enabling systematic exploration of performance regimes.
+
+In this thesis, GEMM microbenchmarking serves multiple purposes:
+
+* Estimating the effective peak performance of Hopper and Blackwell,
+* Identifying transitions between memory-bound and compute-bound regimes,
+* Evaluating the impact of architectural features such as Tensor Cores, TMA, and reduced-precision support.
+
+By correlating empirical results with Roofline models and architectural specifications, GEMM benchmarks provide a rigorous basis for comparing architectures and for understanding how hardware–software co-design choices translate into realized efficiency.
+
+### Summary
+
+GEMM occupies a unique position in AI workloads: it is both the dominant computational primitive and a sensitive probe of architectural efficiency. Its performance depends on arithmetic intensity, memory hierarchy design, numerical precision, and software orchestration, making it an ideal case study for hardware–software co-design.
+
+For these reasons, GEMM is adopted as the central experimental kernel in this thesis. Its analysis not only explains the performance characteristics of Hopper and Blackwell architectures, but also yields insights transferable to Edge AI accelerators, where similar constraints and trade-offs apply.
+
 ## Domain-Specific Languages (DSLs) for GPU Programming
-## Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)
+
+As GPU architectures evolve toward increasingly specialized and asynchronous execution models, the gap between architectural capability and software productivity widens. Traditional CUDA programming exposes low-level control but demands deep microarchitectural expertise to achieve peak efficiency, particularly for kernels such as GEMM that must carefully orchestrate data movement, tiling, and synchronization. **Domain-Specific Languages (DSLs)** for GPU programming have emerged to bridge this gap by providing higher-level abstractions that encode architectural knowledge while retaining fine-grained control over performance-critical details.
+
+In the context of this thesis, DSLs are especially relevant because they embody **hardware–software co-design principles**: they are explicitly designed around GPU execution models, memory hierarchies, and tensor acceleration units. This section reviews representative DSLs for GPU programming, with particular emphasis on **TK, TileLang, CUTE (CUTLASS), and Gluon**, which are most closely aligned with microarchitectural concerns and GEMM-style workloads.
+
+### Motivation for DSLs in GPU Computing
+
+The primary motivation for GPU DSLs is not abstraction for its own sake, but **controlled specialization**. Modern AI kernels require:
+
+* Precise tiling and data layout choices,
+* Explicit management of shared memory and registers,
+* Overlap of computation and data movement,
+* Efficient use of Tensor Cores and reduced-precision formats.
+
+Encoding these decisions directly in CUDA leads to code that is complex, brittle, and architecture-specific. DSLs address this challenge by providing structured representations of computation and data movement that can be systematically mapped to hardware. From a micro- and nanoelectronic perspective, DSLs act as *software counterparts* to architectural primitives, enabling efficient exploitation of silicon features without sacrificing portability or maintainability.
+
+### Triton: Productivity-Oriented Kernel Specialization
+
+**Triton** is a Python-embedded DSL designed to simplify the development of custom GPU kernels while achieving performance comparable to hand-written CUDA. It exposes a programming model centered on blocks and tiles, abstracting away some low-level details such as thread indexing while retaining explicit control over memory access patterns and parallelism [@tritonLang2021].
+
+Triton has been particularly successful for rapid prototyping of GEMM and attention kernels in AI frameworks. However, its abstraction level prioritizes productivity and compiler-driven optimization, which can limit explicit control over certain microarchitectural features (e.g., fine-grained shared memory scheduling). As such, Triton is representative of DSLs that trade maximal control for ease of use.
+
+### TK (Tensor Kernel): Explicit Co-Design with Tensor Cores
+
+**TK (Tensor Kernel)** represents a class of DSLs explicitly designed around **Tensor Core-centric computation**. Rather than treating tensor acceleration as an opaque backend feature, TK exposes tensor-level operations and tiling strategies as first-class constructs. This design aligns closely with the execution model of modern GPUs, where performance is dominated by how effectively Tensor Cores are fed with data.
+
+From a co-design standpoint, TK is notable because it:
+
+* Encodes Tensor Core tile shapes and data layouts directly in the language,
+* Makes register- and shared-memory-level data reuse explicit,
+* Encourages software structures that map naturally to hardware pipelines.
+
+This explicitness is highly relevant for microbenchmarking and architectural evaluation, as it allows controlled experimentation with different tiling and scheduling strategies while preserving a clear mapping to microarchitectural resources. In this sense, TK functions as a *research-oriented DSL*, enabling exploration of architectural trade-offs without dropping to raw CUDA.
+
+### TileLang: Tiling as a First-Class Abstraction
+
+**TileLang** pushes the DSL concept further by elevating **tiling**—the central optimization strategy in GEMM and many AI kernels—to a first-class abstraction. Instead of expressing computation in terms of scalar or vector operations, TileLang structures programs around hierarchical tiles that correspond directly to GPU execution levels (thread, warp, block, cluster).
+
+This approach is particularly powerful from a hardware–software co-design perspective:
+
+* Tiling decisions directly reflect on-chip memory capacities and bandwidth,
+* Hierarchical tiles map naturally to registers, shared memory, and global memory,
+* The language structure mirrors the physical organization of the GPU.
+
+For micro- and nanoelectronic design, TileLang is interesting because it makes the **constraints of the memory hierarchy explicit in the software representation**. This transparency facilitates reasoning about why certain architectural features (e.g., larger shared memory, faster on-chip interconnects) translate into performance gains for specific workloads.
+
+### CUTE (CUTLASS): Template-Based Architectural Specialization
+
+**CUTE**, a core component of NVIDIA’s **CUTLASS** library, is a C++ template-based DSL designed to express high-performance tensor operations in a way that is both generic and architecture-aware [@cutlass2023]. Rather than a standalone language, CUTE provides abstractions for tensor layouts, tiling, and data movement that are resolved at compile time.
+
+CUTE is particularly significant because it underpins many production-grade GEMM kernels used in cuBLAS and related libraries. Its design reflects deep microarchitectural insight:
+
+* Tensor layouts encode memory coalescing and alignment constraints,
+* Tiling abstractions map directly to Tensor Core shapes,
+* Compile-time specialization enables zero-overhead abstractions.
+
+From a co-design perspective, CUTE exemplifies how **DSL concepts can be embedded within systems-level programming languages** to achieve both performance and portability. It also illustrates why new architectures require corresponding software evolution: changes in Tensor Core shapes or memory hierarchy necessitate new template instantiations and layout strategies.
+
+### Gluon: Bridging DSLs and High-Level Frameworks
+
+**Gluon** occupies a complementary position in the DSL landscape by focusing on **integration with higher-level frameworks** while preserving the ability to express hardware-efficient kernels. Rather than targeting only kernel authors, Gluon aims to connect model-level abstractions with low-level execution strategies.
+
+This bridging role is particularly relevant for Edge AI and research workflows, where rapid iteration and deployment matter as much as raw performance. By enabling DSL-defined kernels to be composed within larger computational graphs, Gluon supports end-to-end co-design: architectural constraints influence kernel structure, which in turn informs model design choices.
+
+From a microarchitectural viewpoint, Gluon demonstrates how DSLs can propagate hardware-awareness upward in the software stack, influencing not only kernel performance but also algorithmic structure and deployment decisions.
+
+### Pallas and the Broader DSL Ecosystem
+
+**Pallas**, developed within the JAX ecosystem, represents another approach to GPU DSLs by integrating kernel-level control into a functional, compiler-driven framework [@pallas2023]. While powerful, Pallas emphasizes composability and compiler optimization over explicit microarchitectural control, positioning it differently from DSLs such as TK, TileLang, and CUTE.
+
+Collectively, these DSLs illustrate a spectrum of design points:
+
+* **Productivity-oriented** (Triton, Pallas),
+* **Architecture-explicit and research-focused** (TK, TileLang),
+* **Production-grade and template-specialized** (CUTE),
+* **Framework-bridging** (Gluon).
+
+### Implications for This Thesis
+
+The emphasis on TK, TileLang, CUTE, and Gluon is deliberate. These DSLs provide:
+
+* Explicit control over tiling and data movement,
+* Direct mapping to Tensor Core execution,
+* A clear connection between software structure and microarchitectural resources.
+
+As such, they are particularly well suited for **GEMM microbenchmarking and architectural analysis**, enabling systematic exploration of how Hopper and Blackwell features affect achievable performance. Moreover, insights gained from these DSLs are transferable to Edge AI accelerator design, where similar constraints on memory, precision, and energy dominate.
+
+### Summary
+
+Domain-Specific Languages for GPU programming have become essential tools for exploiting modern architectures. They encode hardware knowledge in software abstractions, enabling efficient use of increasingly complex microarchitectural features. DSLs such as TK, TileLang, CUTE, and Gluon exemplify the tight coupling between hardware evolution and software design, reinforcing the central thesis that **new architectures demand new programming paradigms**.
+
+## Roofline Model and Performance Metrics
+
+To rigorously evaluate the efficiency of modern GPU architectures, raw peak specifications (e.g., TFLOPS) are insufficient. What ultimately matters is how close real workloads can approach these peaks under practical constraints imposed by memory bandwidth, data movement, and power. The **Roofline model** provides a unifying analytical framework to reason about these limits by linking algorithmic characteristics to architectural capabilities.
+
+In this thesis, the Roofline model is adopted as the primary performance analysis tool to interpret GEMM microbenchmark results on Hopper and Blackwell architectures. Beyond peak performance, complementary metrics such as performance per watt and memory efficiency are introduced to reflect constraints that are especially relevant for Edge AI.
+
+### The Roofline Model: Fundamentals
+
+The Roofline model characterizes the maximum attainable performance of a kernel as a function of its **arithmetic intensity (AI)**, defined as the ratio of floating-point operations to bytes transferred from main memory [@williams2009roofline]. Formally,
+
+[
+\text{Performance} \leq \min \left( P_{\text{peak}}, ; \text{AI} \times B_{\text{mem}} \right),
+]
+
+where (P_{\text{peak}}) is the peak compute throughput of the processor and (B_{\text{mem}}) is the achievable memory bandwidth.
+
+Graphically, the model is represented as a piecewise linear curve:
+
+* A **sloped region**, where performance is limited by memory bandwidth (*memory-bound* regime),
+* A **flat roof**, where performance is limited by compute throughput (*compute-bound* regime).
+
+The intersection point between these regions defines the minimum arithmetic intensity required to fully utilize the compute units.
+
+From a microarchitectural perspective, Roofline exposes the balance—or imbalance—between compute resources and the memory subsystem. Architectural evolution from Volta to Blackwell can be interpreted as a continuous effort to raise both the roof (through higher Tensor Core throughput) and the slope (through increased memory bandwidth and improved data movement mechanisms).
+
+### Arithmetic Intensity in GEMM and AI Kernels
+
+GEMM is particularly well suited for Roofline analysis because its arithmetic intensity is analytically tractable and tunable through blocking strategies. For an ideal GEMM implementation, arithmetic intensity increases with matrix size and effective data reuse, enabling execution in the compute-bound regime on sufficiently large problems.
+
+However, real implementations deviate from this ideal due to finite on-chip memory, imperfect reuse, and overheads associated with synchronization and data transfers. These effects become more pronounced in Edge AI, where smaller batch sizes and reduced memory capacity often force GEMM into the memory-bound regime.
+
+By systematically varying problem sizes and data layouts, GEMM microbenchmarks allow direct observation of transitions between Roofline regimes. This capability is central to the experimental methodology of this thesis, as it enables attribution of performance gaps to either compute limitations or memory inefficiencies.
+
+### Beyond a Single Roof: Hierarchical Roofline Models
+
+Modern GPUs feature **multi-level memory hierarchies**, including registers, shared memory, L2 cache, and off-chip HBM. A single Roofline curve based on off-chip bandwidth may therefore obscure important bottlenecks at intermediate levels.
+
+Hierarchical or multi-roof Roofline models extend the original framework by introducing separate bandwidth ceilings for different memory levels [@williams2009roofline]. This approach is particularly relevant for architectures such as Hopper and Blackwell, where explicit data movement between global and shared memory (e.g., via TMA) can significantly alter effective bandwidth.
+
+From a co-design perspective, hierarchical Roofline analysis highlights where software must intervene to exploit on-chip locality. If performance is bounded by shared memory bandwidth rather than HBM, architectural investment in Tensor Cores cannot be fully realized without corresponding kernel restructuring.
+
+### Performance per Watt and Energy-Aware Metrics
+
+While the Roofline model focuses on performance limits, **energy efficiency** is a first-order constraint in both data center and Edge AI contexts. Performance per watt (GFLOPS/W) provides a direct measure of how effectively an architecture converts power into useful computation.
+
+Architectural features such as reduced-precision Tensor Cores and high-bandwidth on-chip memories aim to improve this metric by reducing energy per operation and per byte moved [@nvidiaH100Whitepaper2022; @nvidiaBlackwellArchitecturePage]. However, as with raw performance, these gains are only realized when software achieves high utilization.
+
+In Edge AI, performance per watt often dominates over absolute performance. Consequently, Roofline analysis in this thesis is complemented by energy-normalized metrics to capture trade-offs between throughput and power consumption, providing a more holistic evaluation of architectural efficiency.
+
+### Memory Efficiency and Bandwidth Utilization
+
+Another critical metric is **memory efficiency**, defined as the fraction of theoretical peak bandwidth that is actually achieved by a kernel. Low bandwidth utilization may indicate suboptimal access patterns, insufficient concurrency, or architectural mismatches between memory and compute.
+
+For GEMM, high memory efficiency is typically achieved only when data reuse is maximized and transfers are overlapped with computation. Hopper’s asynchronous data movement primitives and Blackwell’s further enhancements are explicitly designed to raise effective bandwidth utilization, but their impact must be quantified empirically.
+
+Memory efficiency metrics are particularly relevant for Edge AI accelerators, where bandwidth is scarce and often shared across heterogeneous components. Insights gained from high-end GPU analysis can therefore inform the design of more balanced edge-oriented architectures.
+
+### Roofline as a Tool for Architectural Comparison
+
+One of the strengths of the Roofline model is its suitability for **cross-architecture comparison**. By normalizing performance against architectural ceilings, it becomes possible to compare how efficiently different generations (e.g., Hopper vs. Blackwell) exploit their available resources.
+
+In this thesis, Roofline plots are used to:
+
+* Visualize achievable performance relative to theoretical limits,
+* Identify shifts in bottlenecks between architectures,
+* Assess whether architectural innovations effectively translate into higher realized efficiency.
+
+This analytical approach aligns naturally with the goals of micro- and nanoelectronic design: evaluating whether increased silicon complexity and power budget deliver proportional gains under realistic workloads.
+
+### Summary
+
+The Roofline model provides a principled framework for analyzing performance limits in AI workloads by unifying algorithmic and architectural considerations. When combined with complementary metrics such as performance per watt and memory efficiency, it enables a comprehensive assessment of efficiency across the compute–memory–energy spectrum.
+
+In this thesis, Roofline analysis forms the backbone of the experimental evaluation, linking GEMM microbenchmark results to architectural features in Hopper and Blackwell. The next chapter builds on this foundation by detailing the **experimental methodology**, including benchmark design, measurement procedures, and evaluation criteria.
