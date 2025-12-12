@@ -1,0 +1,7 @@
+Important to mention:
+- Increasing model complexity and computational Growth
+- Memory bandwidth and capacity constraints
+- Communication overheads in distributed and heterogeneous systems
+Numerical precission, stability, and robust Execution
+- Energy efficiency and thermal constraints
+- Lack of transparent, fine-grained performance characterization

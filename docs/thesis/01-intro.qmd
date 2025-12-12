@@ -5,10 +5,12 @@
 # Chapter 1 – Introduction
 ## Motivation and Context: The Need for Hardware–Software Co-Design
 
-Modern AI systems are driving a paradigm 
+Modern AI systems are driving a paradigm shift in how computing hardware and software are designed. Instead of treating algorithm development and hardware design as separate concerns, the field is increasingly embracing **hardware-software co-design**. In the words of NVIDIA's CEO Jensen Huang, achieving breakthroughs now requires "extreme co-design"  - synchronously developing new chips, systems architectures, and software stacks (including AI models and applications) in unison @Huang2025. This approach has become essential as traditional CMOS scaling slows; by co-optimizing across the stack, designers can continue to realize exponential gains in performance and efficiency. Indeed, GPU-accelerated computing has sustained improvements faster than Moore's Law by leveraging specialized architectures and parallelism - a trend often dubbed *Huang's Law* @Patel2025. Theses advancements underscore that future **edge AI** and cloud AI platforms alike must be architected holistically: the next generations of AI products will be enabled not by software or hardware alone, but by their joint optimization.
 
 ## Challenges in Efficient Compute for AI and Edge Applications
 
+One domain where hardware-software co-design is particularly critical is **edge AI** - deploying intelligence on resource-constrained devices at the edge of the network. Edge AI promises benefits like low latency and enhanced data privacy by processing information on-device, without always relying on the cloud @CordovaCardenas2024EdgeAI.
+However, realizing these benefits is challenging because embedded devices (e.g. mobile or IoT platforms) have **strict limitations in compute power, memory, and energy**. As noted by Chen et al @Chen2021, the intensive computation and storage demands of modern deep learning models **strain the limited CPU/GPU capability, memory, and battery budged of edge devices**. In practice, an embedded processor may only have a few watts of power and a few gigabytes of memory (or far less in microcontrollers), making it difficult to deploy large neural networks without modifications. This resource gap has led researched to develop an arsenal of model and hardware optimization techniques. Model compression methods like pruning, quantization, knowledge distillation, and efficient architecture design (MobileNets, etc.) can shrink the model footprint, while specialized hardware accelerators (NPUs, FPGAs, ASICs) improve execution efficiency. Yet, despite progress, significant **challenges remain in achieving efficient AI compute under tight constraints**. For example, ultra-low precision inference (below 8-bit) is a promising way to save memory and power, but until recently it had limited support in widely available hardware platforms. Hardware-software co-design thus continues to be and active area of research - balancing algorithmic advances with microarchitectural innovations to meet the demand for real-time, low-power AI at the edge. This thesis is situated in this context, aiming to advance understanding of how next-generation hardware features can be harnessed for efficient edge and accelerated AI computing.
 
 ### Increasing Model Complexity and Computational Growth
 
@@ -29,11 +31,6 @@ Modern AI systems are driving a paradigm
 
 
 ### Lack of Transparent, Fine-Grained Performance Characterization
-
-
-
-### Summary
-
 
 
 
