@@ -33,9 +33,9 @@ format:
       - bottom=2.5cm
       - left=3cm
       - right=2cm
-    lof: true # List of Figures automatic
-    lot: true # List of Tables automatic
-    toc: true
+    lof: true # List of Figures, automatic
+    lot: true # List of Tables, automatic
+    toc: true # Table of Contents, autoamatic
     number-sections: true
     colorlinks: true
     code-line-numbers: true

@@ -1,502 +1,502 @@
 [
   {
-    "objectID": "abstract.html",
-    "href": "abstract.html",
-    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "objectID": "acknowledgements.html",
+    "href": "acknowledgements.html",
+    "title": "Acknowledgements",
     "section": "",
-    "text": "Abstract {.unnumbered}\nHere you will write the abstract of your thesis. It should summarize the motivation (hardware-software co-design), the methodology (microbenchmarking B200 vs H100), and the main findings regarding efficiency and edge computing implications.\nKeywords: NVIDIA Blackwell, GEMM, Edge Computing, Hardware-Software Co-design, Tensor Cores, FP4.",
+    "text": "I would like to thank my supervisors at the University of Sevilla…",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>abstract.html</span>"
+      "Acknowledgements"
     ]
   },
   {
-    "objectID": "acknowledgements.html",
-    "href": "acknowledgements.html",
-    "title": "The Anatomy of an Efficient Blackwell GEMM",
+    "objectID": "abstract.html",
+    "href": "abstract.html",
+    "title": "Abstract",
     "section": "",
-    "text": "Acknowledgements {.unnumbered}\nI would like to thank my supervisors at the University of Sevilla…",
+    "text": "Here you will write the abstract of your thesis. It should summarize the motivation (hardware-software co-design), the methodology (microbenchmarking B200 vs H100), and the main findings regarding efficiency and edge computing implications.\nKeywords: NVIDIA Blackwell, GEMM, Edge Computing, Hardware-Software Co-design, Tensor Cores, FP4.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>acknowledgements.html</span>"
+      "Abstract"
     ]
   },
   {
     "objectID": "01-intro.html",
     "href": "01-intro.html",
-    "title": "4  Chapter 1 – Introduction",
+    "title": "1  Chapter 1 – Introduction",
     "section": "",
-    "text": "4.1 Motivation and Context: The Need for Hardware–Software Co-Design\nThe rapid growth of computational demands in artificial intelligence, scientific workloads, and large-scale data analytics has reshaped the landscape of system design. Modern applications such as trillion-parameter language models, high-fidelity simulations, and latency-constrained inference place unprecedented pressure on both compute throughput and memory bandwidth. Within this context, GPUs have evolved into the core computational substrate of contemporary high-performance and AI-centric infrastructures. The architectural transition from NVIDIA Hopper to NVIDIA Blackwell embodies not only a generational increase in performance, but also a deeper paradigm shift: system efficiency is determined by the joint design of hardware and software rather than by hardware improvements alone.\nHopper introduced features such as the Transformer Engine with FP8 support, mixed-precision Tensor Cores, and a memory hierarchy aimed at balancing HPC and AI workloads. Blackwell significantly extends this trajectory with a dual-die design of approximately 208 billion transistors, second-generation Transformer Engine capabilities, FP4 precision formats, and up to 8 TB/s of HBM3E memory bandwidth in the B200 GPU. These hardware innovations target real-time inference at unprecedented scale and emphasize energy efficiency per generated token—an increasingly important metric in large-scale AI deployments.\nSuch developments exemplify the principles of hardware–software co-design, where architectural decisions and software mechanisms evolve iteratively. Features like quantization formats, sparsity support, collective communication engines, or fused compute kernels demonstrate that performance emerges from coordinated advances across numerical methods, compiler frameworks, runtime systems, and workload-specific optimizations. Historically, breakthroughs such as mixed-precision training only yielded practical performance gains when software frameworks adopted new scaling rules, kernel fusion strategies, and stable optimization methods. Blackwell continues this trend: the performance benefits associated with FP4 formats or enhanced tensor engines depend directly on compiler support, quantization robustness, and the model architectures that can exploit such precision regimes.\nIn practice, effective performance in AI training and inference is known to depend less on theoretical peak FLOPs and more on how effectively software layers—kernels, communication libraries, frameworks, and model implementations—map onto the hardware. The literature on scalable system design, such as the Scaling Book, emphasizes that identifying whether a workload is compute-bound, memory-bound, or communication-bound is fundamental for designing efficient execution strategies. Achieving compute-bound operation requires an alignment among tensor core utilization, memory hierarchy behavior, kernel scheduling, and parallelization strategies. Microbenchmarking, therefore, becomes essential: only through systematic characterization of primitive operations can one understand how real workloads will stress the hardware.\nThe Blackwell architecture provides an excellent case study to illustrate these principles. The architectural differences with respect to Hopper—new precision formats, a redesigned cache and memory hierarchy, increased NVLink bandwidth, and changes in warp scheduling—directly affect kernel behavior. Initial low-level measurements, such as those documented in open-source investigations like blackwell-anatomy, reveal divergences in latency, achieved throughput, memory access patterns, and tensor core utilization relative to Hopper. These observations highlight that software optimized for Hopper does not trivially translate to optimal performance on Blackwell; instead, kernels require adaptation to exploit the newer architectural features effectively. This interdependence underscores the necessity of a hardware–software co-design mindset.\nAlthough the present thesis focuses on data-center-class GPUs, the underlying principles are equally relevant to edge computing systems—an area of future research interest. Edge accelerators must operate under stringent power and latency constraints while supporting increasingly complex AI workloads. Techniques such as low-precision arithmetic, operator fusion, and communication-aware scheduling often emerge first in large GPUs and later transition to edge architectures. Understanding how Hopper and Blackwell respond to distinct microbenchmarks, and how software must adapt to each generation, provides the conceptual foundation necessary to transfer these insights to constrained environments.\nIn this context, the motivation for the present work is twofold. First, there is a need for a rigorous and independent microbenchmarking study of the NVIDIA B200 GPU that characterizes its architectural behavior beyond vendor-reported metrics. Vendor whitepapers offer high-level guidance but rarely expose fine-grained performance phenomena. A systematic benchmarking effort can reveal architectural bottlenecks, utilization ceilings, and workload-dependent behaviors. Second, by framing this study explicitly within the lens of hardware–software co-design, the thesis aims to articulate not only how Blackwell differs from Hopper, but why such differences matter for real workloads. The goal is to demonstrate, with empirical evidence, the importance of co-design as a methodology and to build a skillset directly applicable to future research in edge computing environments, where hardware constraints and software complexity converge most acutely.",
+    "text": "1.1 Motivation and Context: The Need for Hardware–Software Co-Design\nThe rapid growth of computational demands in artificial intelligence, scientific workloads, and large-scale data analytics has reshaped the landscape of system design. Modern applications such as trillion-parameter language models, high-fidelity simulations, and latency-constrained inference place unprecedented pressure on both compute throughput and memory bandwidth. Within this context, GPUs have evolved into the core computational substrate of contemporary high-performance and AI-centric infrastructures. The architectural transition from NVIDIA Hopper to NVIDIA Blackwell embodies not only a generational increase in performance, but also a deeper paradigm shift: system efficiency is determined by the joint design of hardware and software rather than by hardware improvements alone.\nHopper introduced features such as the Transformer Engine with FP8 support, mixed-precision Tensor Cores, and a memory hierarchy aimed at balancing HPC and AI workloads. Blackwell significantly extends this trajectory with a dual-die design of approximately 208 billion transistors, second-generation Transformer Engine capabilities, FP4 precision formats, and up to 8 TB/s of HBM3E memory bandwidth in the B200 GPU. These hardware innovations target real-time inference at unprecedented scale and emphasize energy efficiency per generated token—an increasingly important metric in large-scale AI deployments.\nSuch developments exemplify the principles of hardware–software co-design, where architectural decisions and software mechanisms evolve iteratively. Features like quantization formats, sparsity support, collective communication engines, or fused compute kernels demonstrate that performance emerges from coordinated advances across numerical methods, compiler frameworks, runtime systems, and workload-specific optimizations. Historically, breakthroughs such as mixed-precision training only yielded practical performance gains when software frameworks adopted new scaling rules, kernel fusion strategies, and stable optimization methods. Blackwell continues this trend: the performance benefits associated with FP4 formats or enhanced tensor engines depend directly on compiler support, quantization robustness, and the model architectures that can exploit such precision regimes.\nIn practice, effective performance in AI training and inference is known to depend less on theoretical peak FLOPs and more on how effectively software layers—kernels, communication libraries, frameworks, and model implementations—map onto the hardware. The literature on scalable system design, such as the Scaling Book, emphasizes that identifying whether a workload is compute-bound, memory-bound, or communication-bound is fundamental for designing efficient execution strategies. Achieving compute-bound operation requires an alignment among tensor core utilization, memory hierarchy behavior, kernel scheduling, and parallelization strategies. Microbenchmarking, therefore, becomes essential: only through systematic characterization of primitive operations can one understand how real workloads will stress the hardware.\nThe Blackwell architecture provides an excellent case study to illustrate these principles. The architectural differences with respect to Hopper—new precision formats, a redesigned cache and memory hierarchy, increased NVLink bandwidth, and changes in warp scheduling—directly affect kernel behavior. Initial low-level measurements, such as those documented in open-source investigations like blackwell-anatomy, reveal divergences in latency, achieved throughput, memory access patterns, and tensor core utilization relative to Hopper. These observations highlight that software optimized for Hopper does not trivially translate to optimal performance on Blackwell; instead, kernels require adaptation to exploit the newer architectural features effectively. This interdependence underscores the necessity of a hardware–software co-design mindset.\nAlthough the present thesis focuses on data-center-class GPUs, the underlying principles are equally relevant to edge computing systems—an area of future research interest. Edge accelerators must operate under stringent power and latency constraints while supporting increasingly complex AI workloads. Techniques such as low-precision arithmetic, operator fusion, and communication-aware scheduling often emerge first in large GPUs and later transition to edge architectures. Understanding how Hopper and Blackwell respond to distinct microbenchmarks, and how software must adapt to each generation, provides the conceptual foundation necessary to transfer these insights to constrained environments.\nIn this context, the motivation for the present work is twofold. First, there is a need for a rigorous and independent microbenchmarking study of the NVIDIA B200 GPU that characterizes its architectural behavior beyond vendor-reported metrics. Vendor whitepapers offer high-level guidance but rarely expose fine-grained performance phenomena. A systematic benchmarking effort can reveal architectural bottlenecks, utilization ceilings, and workload-dependent behaviors. Second, by framing this study explicitly within the lens of hardware–software co-design, the thesis aims to articulate not only how Blackwell differs from Hopper, but why such differences matter for real workloads. The goal is to demonstrate, with empirical evidence, the importance of co-design as a methodology and to build a skillset directly applicable to future research in edge computing environments, where hardware constraints and software complexity converge most acutely.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#challenges-in-efficient-compute-for-ai-and-edge-applications",
     "href": "01-intro.html#challenges-in-efficient-compute-for-ai-and-edge-applications",
-    "title": "4  Chapter 1 – Introduction",
-    "section": "4.2 Challenges in Efficient Compute for AI and Edge Applications",
-    "text": "4.2 Challenges in Efficient Compute for AI and Edge Applications\nThe rapid evolution of artificial intelligence, particularly in deep learning and large-scale foundation models, has revealed fundamental limitations in current compute architectures. Although GPU-accelerated systems have become the dominant platform for AI workloads, achieving high efficiency across diverse operating conditions—ranging from hyperscale training clusters to power-constrained edge devices—remains a significant challenge. Efficiency, in this context, encompasses not only peak theoretical throughput, but also sustained performance, energy efficiency, memory utilization, communication overheads, and adaptability to emerging model architectures. The following subsections outline the primary challenges that motivate this thesis and contextualize the need for a deeper architectural and microarchitectural understanding of modern GPUs such as NVIDIA Hopper and Blackwell.\n\n4.2.1 Increasing Model Complexity and Computational Growth\nThe computational requirements of state-of-the-art AI models have grown at a superlinear rate. Transformer-based architectures dominate modern AI, and their scaling behavior—both in parameters and sequence length—creates workloads that stress every component of the compute stack. Larger embedding dimensions, attention mechanisms with quadratic complexity, and extended context windows impose significant pressure on compute units, memory bandwidth, and cache hierarchies.\nIn large data centers, the primary challenge lies in providing sufficient compute density and communication bandwidth to sustain multi-node training without falling into communication-bound regimes. At the edge, however, the challenge is even more severe: only a fraction of the necessary compute and memory capacity is available, and energy consumption must be strictly bounded. This disparity underscores the importance of understanding how architectural features, such as the tensor engines in Hopper or the FP4-capable Transformer Engine in Blackwell, behave under different numerical formats and model configurations.\n\n\n4.2.2 Memory Bandwidth and Capacity Constraints\nAs GPUs evolve, memory bandwidth has become the dominant bottleneck for many AI workloads. Even when raw FLOPs increase significantly from one architecture to the next, memory bandwidth often scales at a slower pace, creating a widening “memory wall.” Architectures such as Hopper and Blackwell attempt to mitigate this challenge through:\n\nWider HBM memory stacks (HBM2e, HBM3, HBM3E),\nLarger shared memory and L2 cache capacities,\nMore flexible residency and partitioning of on-chip memory,\nAdvanced prefetching and compression mechanisms.\n\nHowever, achieving near-peak memory throughput in practice requires software techniques such as kernel fusion, optimized tensor layouts, asynchronous memory operations, and reduced-precision formats that reduce memory footprint. In edge environments, limited DRAM capacity and lower memory bandwidth magnify these challenges, making efficient dataflow design indispensable.\n\n\n4.2.3 Communication Overheads in Distributed and Heterogeneous Systems\nMulti-GPU and multi-node scaling is essential for training and deploying large AI models. Even with the sophisticated interconnects available in modern systems—NVLink, NVSwitch, InfiniBand—the performance of distributed workloads is frequently dominated by communication rather than computation. Training efficiency can degrade sharply if model parallelism, pipeline parallelism, and collective operations are not carefully tailored to the hardware topology.\nFurthermore, heterogeneity introduces additional complexity: edge systems often incorporate mixtures of CPUs, GPUs, NPUs, and embedded accelerators, each with distinct capabilities and communication characteristics. Efficiently mapping workloads to such heterogeneous platforms requires awareness of compute intensity, data locality, and the cost of synchronization across devices.\n\n\n4.2.4 Numerical Precision, Stability, and Robust Execution\nPrecision scaling is one of the most powerful levers for improving efficiency. Hopper introduced FP8 formats to accelerate transformer-based training; Blackwell expands this paradigm by enabling FP4 inference at scale. While lower-precision arithmetic drastically reduces memory bandwidth requirements and increases compute density, it also introduces challenges:\n\nMaintaining numerical stability during training and inference,\nAdjusting quantization-aware algorithms,\nEnsuring robustness under adversarial or high-variance inputs,\nDesigning kernels and runtimes capable of exploiting these formats without degradation.\n\nAs precision becomes a first-class design parameter, co-designing numerics, kernels, and architectures becomes essential.\n\n\n4.2.5 Energy Efficiency and Thermal Constraints\nIn both hyperscale and edge settings, energy efficiency is central. For data centers, energy consumption directly determines operational cost and environmental impact. For edge devices, energy and thermal constraints determine feasibility. AI workloads, particularly those involving large matrix multiplications, are highly power demanding, and maintaining sustained performance requires careful dynamic management of:\n\nVoltage and frequency scaling,\nThermal headroom,\nActive cooling capabilities,\nLoad balancing across compute units.\n\nNext-generation architectures such as Blackwell seek to increase performance-per-watt, yet achieving this in real workloads requires that software align with the hardware’s optimal operating points.\n\n\n4.2.6 Lack of Transparent, Fine-Grained Performance Characterization\nAlthough GPU vendors publish extensive whitepapers, many architectural behaviors remain undocumented or only indirectly observable. Effective optimization—especially for edge devices or custom deployments—requires fine-grained insights into:\n\nActual tensor core throughput across precisions,\nMemory coalescing patterns and load/store latencies,\nScheduling policies,\nWarp-level synchronization costs,\nInterplay between kernel shapes and occupancy.\n\nThis gap motivates independent microbenchmarking, such as the approach pursued in this thesis and exemplified by investigations like blackwell-anatomy, which reveal empirically how architectural changes impact real workloads.\n\n\n4.2.7 Summary\nEfficient compute for AI and edge applications requires navigating a complex landscape of architectural constraints, communication patterns, numerical formats, and workload characteristics. The evolution from Hopper to Blackwell embodies many of these challenges and provides a concrete opportunity to study how architectural innovations interact with software design choices. By conducting a systematic microbenchmarking analysis of Blackwell and comparing it with its predecessor, this thesis aims to contribute to a deeper understanding of the hardware–software co-design principles required for achieving high efficiency in modern AI systems.",
+    "title": "1  Chapter 1 – Introduction",
+    "section": "1.2 Challenges in Efficient Compute for AI and Edge Applications",
+    "text": "1.2 Challenges in Efficient Compute for AI and Edge Applications\nThe rapid evolution of artificial intelligence, particularly in deep learning and large-scale foundation models, has revealed fundamental limitations in current compute architectures. Although GPU-accelerated systems have become the dominant platform for AI workloads, achieving high efficiency across diverse operating conditions—ranging from hyperscale training clusters to power-constrained edge devices—remains a significant challenge. Efficiency, in this context, encompasses not only peak theoretical throughput, but also sustained performance, energy efficiency, memory utilization, communication overheads, and adaptability to emerging model architectures. The following subsections outline the primary challenges that motivate this thesis and contextualize the need for a deeper architectural and microarchitectural understanding of modern GPUs such as NVIDIA Hopper and Blackwell.\n\n1.2.1 Increasing Model Complexity and Computational Growth\nThe computational requirements of state-of-the-art AI models have grown at a superlinear rate. Transformer-based architectures dominate modern AI, and their scaling behavior—both in parameters and sequence length—creates workloads that stress every component of the compute stack. Larger embedding dimensions, attention mechanisms with quadratic complexity, and extended context windows impose significant pressure on compute units, memory bandwidth, and cache hierarchies.\nIn large data centers, the primary challenge lies in providing sufficient compute density and communication bandwidth to sustain multi-node training without falling into communication-bound regimes. At the edge, however, the challenge is even more severe: only a fraction of the necessary compute and memory capacity is available, and energy consumption must be strictly bounded. This disparity underscores the importance of understanding how architectural features, such as the tensor engines in Hopper or the FP4-capable Transformer Engine in Blackwell, behave under different numerical formats and model configurations.\n\n\n1.2.2 Memory Bandwidth and Capacity Constraints\nAs GPUs evolve, memory bandwidth has become the dominant bottleneck for many AI workloads. Even when raw FLOPs increase significantly from one architecture to the next, memory bandwidth often scales at a slower pace, creating a widening “memory wall.” Architectures such as Hopper and Blackwell attempt to mitigate this challenge through:\n\nWider HBM memory stacks (HBM2e, HBM3, HBM3E),\nLarger shared memory and L2 cache capacities,\nMore flexible residency and partitioning of on-chip memory,\nAdvanced prefetching and compression mechanisms.\n\nHowever, achieving near-peak memory throughput in practice requires software techniques such as kernel fusion, optimized tensor layouts, asynchronous memory operations, and reduced-precision formats that reduce memory footprint. In edge environments, limited DRAM capacity and lower memory bandwidth magnify these challenges, making efficient dataflow design indispensable.\n\n\n1.2.3 Communication Overheads in Distributed and Heterogeneous Systems\nMulti-GPU and multi-node scaling is essential for training and deploying large AI models. Even with the sophisticated interconnects available in modern systems—NVLink, NVSwitch, InfiniBand—the performance of distributed workloads is frequently dominated by communication rather than computation. Training efficiency can degrade sharply if model parallelism, pipeline parallelism, and collective operations are not carefully tailored to the hardware topology.\nFurthermore, heterogeneity introduces additional complexity: edge systems often incorporate mixtures of CPUs, GPUs, NPUs, and embedded accelerators, each with distinct capabilities and communication characteristics. Efficiently mapping workloads to such heterogeneous platforms requires awareness of compute intensity, data locality, and the cost of synchronization across devices.\n\n\n1.2.4 Numerical Precision, Stability, and Robust Execution\nPrecision scaling is one of the most powerful levers for improving efficiency. Hopper introduced FP8 formats to accelerate transformer-based training; Blackwell expands this paradigm by enabling FP4 inference at scale. While lower-precision arithmetic drastically reduces memory bandwidth requirements and increases compute density, it also introduces challenges:\n\nMaintaining numerical stability during training and inference,\nAdjusting quantization-aware algorithms,\nEnsuring robustness under adversarial or high-variance inputs,\nDesigning kernels and runtimes capable of exploiting these formats without degradation.\n\nAs precision becomes a first-class design parameter, co-designing numerics, kernels, and architectures becomes essential.\n\n\n1.2.5 Energy Efficiency and Thermal Constraints\nIn both hyperscale and edge settings, energy efficiency is central. For data centers, energy consumption directly determines operational cost and environmental impact. For edge devices, energy and thermal constraints determine feasibility. AI workloads, particularly those involving large matrix multiplications, are highly power demanding, and maintaining sustained performance requires careful dynamic management of:\n\nVoltage and frequency scaling,\nThermal headroom,\nActive cooling capabilities,\nLoad balancing across compute units.\n\nNext-generation architectures such as Blackwell seek to increase performance-per-watt, yet achieving this in real workloads requires that software align with the hardware’s optimal operating points.\n\n\n1.2.6 Lack of Transparent, Fine-Grained Performance Characterization\nAlthough GPU vendors publish extensive whitepapers, many architectural behaviors remain undocumented or only indirectly observable. Effective optimization—especially for edge devices or custom deployments—requires fine-grained insights into:\n\nActual tensor core throughput across precisions,\nMemory coalescing patterns and load/store latencies,\nScheduling policies,\nWarp-level synchronization costs,\nInterplay between kernel shapes and occupancy.\n\nThis gap motivates independent microbenchmarking, such as the approach pursued in this thesis and exemplified by investigations like blackwell-anatomy, which reveal empirically how architectural changes impact real workloads.\n\n\n1.2.7 Summary\nEfficient compute for AI and edge applications requires navigating a complex landscape of architectural constraints, communication patterns, numerical formats, and workload characteristics. The evolution from Hopper to Blackwell embodies many of these challenges and provides a concrete opportunity to study how architectural innovations interact with software design choices. By conducting a systematic microbenchmarking analysis of Blackwell and comparing it with its predecessor, this thesis aims to contribute to a deeper understanding of the hardware–software co-design principles required for achieving high efficiency in modern AI systems.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#objectives-and-scope-of-the-thesis",
     "href": "01-intro.html#objectives-and-scope-of-the-thesis",
-    "title": "4  Chapter 1 – Introduction",
-    "section": "4.3 Objectives and Scope of the Thesis",
-    "text": "4.3 Objectives and Scope of the Thesis",
+    "title": "1  Chapter 1 – Introduction",
+    "section": "1.3 Objectives and Scope of the Thesis",
+    "text": "1.3 Objectives and Scope of the Thesis",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#methodology-overview",
     "href": "01-intro.html#methodology-overview",
-    "title": "4  Chapter 1 – Introduction",
-    "section": "4.4 Methodology Overview",
-    "text": "4.4 Methodology Overview",
+    "title": "1  Chapter 1 – Introduction",
+    "section": "1.4 Methodology Overview",
+    "text": "1.4 Methodology Overview",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#structure-of-the-thesis",
     "href": "01-intro.html#structure-of-the-thesis",
-    "title": "4  Chapter 1 – Introduction",
-    "section": "4.5 Structure of the Thesis",
-    "text": "4.5 Structure of the Thesis",
+    "title": "1  Chapter 1 – Introduction",
+    "section": "1.5 Structure of the Thesis",
+    "text": "1.5 Structure of the Thesis",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 1 – Introduction</span>"
     ]
   },
   {
     "objectID": "02-background.html",
     "href": "02-background.html",
-    "title": "5  Chapter 2 – Background and Related Work",
+    "title": "2  Chapter 2 – Background and Related Work",
     "section": "",
-    "text": "5.1 Evolution of GPU Architectures: From Volta to Blackwell",
+    "text": "2.1 Evolution of GPU Architectures: From Volta to Blackwell",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
     ]
   },
   {
     "objectID": "02-background.html#hardwaresoftware-co-design-principles-and-applications",
     "href": "02-background.html#hardwaresoftware-co-design-principles-and-applications",
-    "title": "5  Chapter 2 – Background and Related Work",
-    "section": "5.2 Hardware–Software Co-Design: Principles and Applications",
-    "text": "5.2 Hardware–Software Co-Design: Principles and Applications",
+    "title": "2  Chapter 2 – Background and Related Work",
+    "section": "2.2 Hardware–Software Co-Design: Principles and Applications",
+    "text": "2.2 Hardware–Software Co-Design: Principles and Applications",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
     ]
   },
   {
     "objectID": "02-background.html#general-matrix-matrix-multiplication-gemm-in-ai-workloads",
     "href": "02-background.html#general-matrix-matrix-multiplication-gemm-in-ai-workloads",
-    "title": "5  Chapter 2 – Background and Related Work",
-    "section": "5.3 General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
-    "text": "5.3 General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
+    "title": "2  Chapter 2 – Background and Related Work",
+    "section": "2.3 General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
+    "text": "2.3 General Matrix-Matrix Multiplication (GEMM) in AI Workloads",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
     ]
   },
   {
     "objectID": "02-background.html#domain-specific-languages-dsls-for-gpu-programming",
     "href": "02-background.html#domain-specific-languages-dsls-for-gpu-programming",
-    "title": "5  Chapter 2 – Background and Related Work",
-    "section": "5.4 Domain-Specific Languages (DSLs) for GPU Programming",
-    "text": "5.4 Domain-Specific Languages (DSLs) for GPU Programming",
+    "title": "2  Chapter 2 – Background and Related Work",
+    "section": "2.4 Domain-Specific Languages (DSLs) for GPU Programming",
+    "text": "2.4 Domain-Specific Languages (DSLs) for GPU Programming",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
     ]
   },
   {
     "objectID": "02-background.html#relevant-publications-and-tools-nvidia-research-citadel-jax-scaling-book-etc.",
     "href": "02-background.html#relevant-publications-and-tools-nvidia-research-citadel-jax-scaling-book-etc.",
-    "title": "5  Chapter 2 – Background and Related Work",
-    "section": "5.5 Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
-    "text": "5.5 Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
+    "title": "2  Chapter 2 – Background and Related Work",
+    "section": "2.5 Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
+    "text": "2.5 Relevant Publications and Tools (NVIDIA Research, Citadel, JAX Scaling Book, etc.)",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2 – Background and Related Work</span>"
     ]
   },
   {
     "objectID": "03-architecture.html",
     "href": "03-architecture.html",
-    "title": "6  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
+    "title": "3  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
     "section": "",
-    "text": "6.1 Overview of Hopper Architecture",
+    "text": "3.1 Overview of Hopper Architecture",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
     ]
   },
   {
     "objectID": "03-architecture.html#overview-of-blackwell-architecture",
     "href": "03-architecture.html#overview-of-blackwell-architecture",
-    "title": "6  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
-    "section": "6.2 Overview of Blackwell Architecture",
-    "text": "6.2 Overview of Blackwell Architecture",
+    "title": "3  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
+    "section": "3.2 Overview of Blackwell Architecture",
+    "text": "3.2 Overview of Blackwell Architecture",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
     ]
   },
   {
     "objectID": "03-architecture.html#key-innovations-in-blackwell",
     "href": "03-architecture.html#key-innovations-in-blackwell",
-    "title": "6  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
-    "section": "6.3 Key Innovations in Blackwell",
-    "text": "6.3 Key Innovations in Blackwell\n\n6.3.1 Ultra Tensor Cores and New Precision Formats (FP8, FP4)\n\n\n6.3.2 Transformer Engine and FP4 Micro Scaling\n\n\n6.3.3 Multi-Die Chip Design and Interconnect (NVLink, NVSwitch)\n\n\n6.3.4 Memory System: HBM3e, L2 Cache, and Shared Memory",
+    "title": "3  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
+    "section": "3.3 Key Innovations in Blackwell",
+    "text": "3.3 Key Innovations in Blackwell\n\n3.3.1 Ultra Tensor Cores and New Precision Formats (FP8, FP4)\n\n\n3.3.2 Transformer Engine and FP4 Micro Scaling\n\n\n3.3.3 Multi-Die Chip Design and Interconnect (NVLink, NVSwitch)\n\n\n3.3.4 Memory System: HBM3e, L2 Cache, and Shared Memory",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
     ]
   },
   {
     "objectID": "03-architecture.html#performancewatt-and-area-efficiency-considerations",
     "href": "03-architecture.html#performancewatt-and-area-efficiency-considerations",
-    "title": "6  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
-    "section": "6.4 Performance/Watt and Area Efficiency Considerations",
-    "text": "6.4 Performance/Watt and Area Efficiency Considerations",
+    "title": "3  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
+    "section": "3.4 Performance/Watt and Area Efficiency Considerations",
+    "text": "3.4 Performance/Watt and Area Efficiency Considerations",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
     ]
   },
   {
     "objectID": "03-architecture.html#summary-of-architectural-differences",
     "href": "03-architecture.html#summary-of-architectural-differences",
-    "title": "6  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
-    "section": "6.5 Summary of Architectural Differences",
-    "text": "6.5 Summary of Architectural Differences",
+    "title": "3  Chapter 3 – Architecture Comparison: Hopper vs Blackwell",
+    "section": "3.5 Summary of Architectural Differences",
+    "text": "3.5 Summary of Architectural Differences",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span>"
     ]
   },
   {
     "objectID": "04-metrics.html",
     "href": "04-metrics.html",
-    "title": "7  Chapter 4 – Metrics for GPU Efficiency",
+    "title": "4  Chapter 4 – Metrics for GPU Efficiency",
     "section": "",
-    "text": "7.1 Performance per Watt",
+    "text": "4.1 Performance per Watt",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
     ]
   },
   {
     "objectID": "04-metrics.html#compute-throughput-by-data-type",
     "href": "04-metrics.html#compute-throughput-by-data-type",
-    "title": "7  Chapter 4 – Metrics for GPU Efficiency",
-    "section": "7.2 Compute Throughput by Data Type",
-    "text": "7.2 Compute Throughput by Data Type",
+    "title": "4  Chapter 4 – Metrics for GPU Efficiency",
+    "section": "4.2 Compute Throughput by Data Type",
+    "text": "4.2 Compute Throughput by Data Type",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
     ]
   },
   {
     "objectID": "04-metrics.html#memory-bandwidth-and-arithmetic-intensity",
     "href": "04-metrics.html#memory-bandwidth-and-arithmetic-intensity",
-    "title": "7  Chapter 4 – Metrics for GPU Efficiency",
-    "section": "7.3 Memory Bandwidth and Arithmetic Intensity",
-    "text": "7.3 Memory Bandwidth and Arithmetic Intensity",
+    "title": "4  Chapter 4 – Metrics for GPU Efficiency",
+    "section": "4.3 Memory Bandwidth and Arithmetic Intensity",
+    "text": "4.3 Memory Bandwidth and Arithmetic Intensity",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
     ]
   },
   {
     "objectID": "04-metrics.html#power-thermal-design-and-silicon-area-constraints",
     "href": "04-metrics.html#power-thermal-design-and-silicon-area-constraints",
-    "title": "7  Chapter 4 – Metrics for GPU Efficiency",
-    "section": "7.4 Power, Thermal Design, and Silicon Area Constraints",
-    "text": "7.4 Power, Thermal Design, and Silicon Area Constraints",
+    "title": "4  Chapter 4 – Metrics for GPU Efficiency",
+    "section": "4.4 Power, Thermal Design, and Silicon Area Constraints",
+    "text": "4.4 Power, Thermal Design, and Silicon Area Constraints",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
     ]
   },
   {
     "objectID": "04-metrics.html#efficiency-bottlenecks-from-memory-bound-to-compute-bound",
     "href": "04-metrics.html#efficiency-bottlenecks-from-memory-bound-to-compute-bound",
-    "title": "7  Chapter 4 – Metrics for GPU Efficiency",
-    "section": "7.5 Efficiency Bottlenecks: From Memory Bound to Compute Bound",
-    "text": "7.5 Efficiency Bottlenecks: From Memory Bound to Compute Bound",
+    "title": "4  Chapter 4 – Metrics for GPU Efficiency",
+    "section": "4.5 Efficiency Bottlenecks: From Memory Bound to Compute Bound",
+    "text": "4.5 Efficiency Bottlenecks: From Memory Bound to Compute Bound",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 4 – Metrics for GPU Efficiency</span>"
     ]
   },
   {
     "objectID": "05-programming.html",
     "href": "05-programming.html",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
     "section": "",
-    "text": "8.1 Introduction to GPU DSLs for Performance",
+    "text": "5.1 Introduction to GPU DSLs for Performance",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#triton",
     "href": "05-programming.html#triton",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.2 Triton",
-    "text": "8.2 Triton",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.2 Triton",
+    "text": "5.2 Triton",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#thunderkittens-tk",
     "href": "05-programming.html#thunderkittens-tk",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.3 ThunderKittens (TK)",
-    "text": "8.3 ThunderKittens (TK)",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.3 ThunderKittens (TK)",
+    "text": "5.3 ThunderKittens (TK)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#tilelang",
     "href": "05-programming.html#tilelang",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.4 TileLang",
-    "text": "8.4 TileLang",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.4 TileLang",
+    "text": "5.4 TileLang",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#cute-and-cutlass",
     "href": "05-programming.html#cute-and-cutlass",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.5 Cute and CUTLASS",
-    "text": "8.5 Cute and CUTLASS",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.5 Cute and CUTLASS",
+    "text": "5.5 Cute and CUTLASS",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#gluon",
     "href": "05-programming.html#gluon",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.6 Gluon",
-    "text": "8.6 Gluon",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.6 Gluon",
+    "text": "5.6 Gluon",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#pallas-and-the-jax-ml-scaling-framework",
     "href": "05-programming.html#pallas-and-the-jax-ml-scaling-framework",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.7 Pallas and the JAX ML Scaling Framework",
-    "text": "8.7 Pallas and the JAX ML Scaling Framework",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.7 Pallas and the JAX ML Scaling Framework",
+    "text": "5.7 Pallas and the JAX ML Scaling Framework",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "05-programming.html#summary-dsls-as-enablers-of-architectural-efficiency",
     "href": "05-programming.html#summary-dsls-as-enablers-of-architectural-efficiency",
-    "title": "8  Chapter 5 – Programming Models for Modern GPUs",
-    "section": "8.8 Summary: DSLs as Enablers of Architectural Efficiency",
-    "text": "8.8 Summary: DSLs as Enablers of Architectural Efficiency",
+    "title": "5  Chapter 5 – Programming Models for Modern GPUs",
+    "section": "5.8 Summary: DSLs as Enablers of Architectural Efficiency",
+    "text": "5.8 Summary: DSLs as Enablers of Architectural Efficiency",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chapter 5 – Programming Models for Modern GPUs</span>"
     ]
   },
   {
     "objectID": "06-methodology.html",
     "href": "06-methodology.html",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
     "section": "",
-    "text": "9.1 Objectives of Benchmarking",
+    "text": "6.1 Objectives of Benchmarking",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "06-methodology.html#hardware-platforms-and-specifications",
     "href": "06-methodology.html#hardware-platforms-and-specifications",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
-    "section": "9.2 Hardware Platforms and Specifications",
-    "text": "9.2 Hardware Platforms and Specifications\n\n9.2.1 Hopper H100\n\n\n9.2.2 Blackwell B200",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
+    "section": "6.2 Hardware Platforms and Specifications",
+    "text": "6.2 Hardware Platforms and Specifications\n\n6.2.1 Hopper H100\n\n\n6.2.2 Blackwell B200",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "06-methodology.html#software-tools-and-libraries-used",
     "href": "06-methodology.html#software-tools-and-libraries-used",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
-    "section": "9.3 Software Tools and Libraries Used",
-    "text": "9.3 Software Tools and Libraries Used",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
+    "section": "6.3 Software Tools and Libraries Used",
+    "text": "6.3 Software Tools and Libraries Used",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "06-methodology.html#microbenchmark-design-gemm-kernel-implementations",
     "href": "06-methodology.html#microbenchmark-design-gemm-kernel-implementations",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
-    "section": "9.4 Microbenchmark Design: GEMM Kernel Implementations",
-    "text": "9.4 Microbenchmark Design: GEMM Kernel Implementations",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
+    "section": "6.4 Microbenchmark Design: GEMM Kernel Implementations",
+    "text": "6.4 Microbenchmark Design: GEMM Kernel Implementations",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "06-methodology.html#measurement-techniques",
     "href": "06-methodology.html#measurement-techniques",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
-    "section": "9.5 Measurement Techniques",
-    "text": "9.5 Measurement Techniques\n\n9.5.1 Throughput (FLOP/s)\n\n\n9.5.2 Power Consumption and Efficiency\n\n\n9.5.3 Memory Bandwidth",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
+    "section": "6.5 Measurement Techniques",
+    "text": "6.5 Measurement Techniques\n\n6.5.1 Throughput (FLOP/s)\n\n\n6.5.2 Power Consumption and Efficiency\n\n\n6.5.3 Memory Bandwidth",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "06-methodology.html#ensuring-fairness-and-reproducibility",
     "href": "06-methodology.html#ensuring-fairness-and-reproducibility",
-    "title": "9  Chapter 6 – Methodology and Experimental Setup",
-    "section": "9.6 Ensuring Fairness and Reproducibility",
-    "text": "9.6 Ensuring Fairness and Reproducibility",
+    "title": "6  Chapter 6 – Methodology and Experimental Setup",
+    "section": "6.6 Ensuring Fairness and Reproducibility",
+    "text": "6.6 Ensuring Fairness and Reproducibility",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Chapter 6 – Methodology and Experimental Setup</span>"
     ]
   },
   {
     "objectID": "07-results.html",
     "href": "07-results.html",
-    "title": "10  Chapter 7 – Results and Discussion",
+    "title": "7  Chapter 7 – Results and Discussion",
     "section": "",
-    "text": "10.1 Performance Comparison Across Data Types",
+    "text": "7.1 Performance Comparison Across Data Types",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#analysis-of-performance-per-watt",
     "href": "07-results.html#analysis-of-performance-per-watt",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.2 Analysis of Performance per Watt",
-    "text": "10.2 Analysis of Performance per Watt",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.2 Analysis of Performance per Watt",
+    "text": "7.2 Analysis of Performance per Watt",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#memory-bandwidth-observations",
     "href": "07-results.html#memory-bandwidth-observations",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.3 Memory Bandwidth Observations",
-    "text": "10.3 Memory Bandwidth Observations",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.3 Memory Bandwidth Observations",
+    "text": "7.3 Memory Bandwidth Observations",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#impact-of-tma-tensor-memory-accelerator",
     "href": "07-results.html#impact-of-tma-tensor-memory-accelerator",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.4 Impact of TMA (Tensor Memory Accelerator)",
-    "text": "10.4 Impact of TMA (Tensor Memory Accelerator)",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.4 Impact of TMA (Tensor Memory Accelerator)",
+    "text": "7.4 Impact of TMA (Tensor Memory Accelerator)",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#roofline-analysis-compute-vs-memory-bound",
     "href": "07-results.html#roofline-analysis-compute-vs-memory-bound",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.5 Roofline Analysis: Compute vs Memory Bound",
-    "text": "10.5 Roofline Analysis: Compute vs Memory Bound",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.5 Roofline Analysis: Compute vs Memory Bound",
+    "text": "7.5 Roofline Analysis: Compute vs Memory Bound",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#real-world-relevance-case-study-on-transformer-inferencetraining",
     "href": "07-results.html#real-world-relevance-case-study-on-transformer-inferencetraining",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.6 Real-World Relevance: Case Study on Transformer Inference/Training",
-    "text": "10.6 Real-World Relevance: Case Study on Transformer Inference/Training",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.6 Real-World Relevance: Case Study on Transformer Inference/Training",
+    "text": "7.6 Real-World Relevance: Case Study on Transformer Inference/Training",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "07-results.html#discussion-of-bottlenecks-and-architectural-impact",
     "href": "07-results.html#discussion-of-bottlenecks-and-architectural-impact",
-    "title": "10  Chapter 7 – Results and Discussion",
-    "section": "10.7 Discussion of Bottlenecks and Architectural Impact",
-    "text": "10.7 Discussion of Bottlenecks and Architectural Impact",
+    "title": "7  Chapter 7 – Results and Discussion",
+    "section": "7.7 Discussion of Bottlenecks and Architectural Impact",
+    "text": "7.7 Discussion of Bottlenecks and Architectural Impact",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chapter 7 – Results and Discussion</span>"
     ]
   },
   {
     "objectID": "08-conclusion.html",
     "href": "08-conclusion.html",
-    "title": "11  Chapter 8 – Conclusions and Future Work",
+    "title": "8  Chapter 8 – Conclusions and Future Work",
     "section": "",
-    "text": "11.1 Summary of Findings",
+    "text": "8.1 Summary of Findings",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
     ]
   },
   {
     "objectID": "08-conclusion.html#implications-for-hardwaresoftware-co-design",
     "href": "08-conclusion.html#implications-for-hardwaresoftware-co-design",
-    "title": "11  Chapter 8 – Conclusions and Future Work",
-    "section": "11.2 Implications for Hardware–Software Co-Design",
-    "text": "11.2 Implications for Hardware–Software Co-Design",
+    "title": "8  Chapter 8 – Conclusions and Future Work",
+    "section": "8.2 Implications for Hardware–Software Co-Design",
+    "text": "8.2 Implications for Hardware–Software Co-Design",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
     ]
   },
   {
     "objectID": "08-conclusion.html#relevance-to-edge-computing",
     "href": "08-conclusion.html#relevance-to-edge-computing",
-    "title": "11  Chapter 8 – Conclusions and Future Work",
-    "section": "11.3 Relevance to Edge Computing",
-    "text": "11.3 Relevance to Edge Computing",
+    "title": "8  Chapter 8 – Conclusions and Future Work",
+    "section": "8.3 Relevance to Edge Computing",
+    "text": "8.3 Relevance to Edge Computing",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
     ]
   },
   {
     "objectID": "08-conclusion.html#future-work-and-doctoral-research-directions",
     "href": "08-conclusion.html#future-work-and-doctoral-research-directions",
-    "title": "11  Chapter 8 – Conclusions and Future Work",
-    "section": "11.4 Future Work and Doctoral Research Directions",
-    "text": "11.4 Future Work and Doctoral Research Directions",
+    "title": "8  Chapter 8 – Conclusions and Future Work",
+    "section": "8.4 Future Work and Doctoral Research Directions",
+    "text": "8.4 Future Work and Doctoral Research Directions",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chapter 8 – Conclusions and Future Work</span>"
     ]
   },
   {
     "objectID": "10-appendices.html",
     "href": "10-appendices.html",
-    "title": "13  Appendices",
+    "title": "10  Appendices",
     "section": "",
-    "text": "13.1 Appendix A: Experimental Scripts and Kernel Listings",
+    "text": "10.1 Appendix A: Experimental Scripts and Kernel Listings",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Appendices</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Appendices</span>"
     ]
   },
   {
     "objectID": "10-appendices.html#appendix-b-extended-benchmark-results",
     "href": "10-appendices.html#appendix-b-extended-benchmark-results",
-    "title": "13  Appendices",
-    "section": "13.2 Appendix B: Extended Benchmark Results",
-    "text": "13.2 Appendix B: Extended Benchmark Results",
+    "title": "10  Appendices",
+    "section": "10.2 Appendix B: Extended Benchmark Results",
+    "text": "10.2 Appendix B: Extended Benchmark Results",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Appendices</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Appendices</span>"
     ]
   },
   {
     "objectID": "10-appendices.html#appendix-c-tma-and-gemm-intrinsics-documentation",
     "href": "10-appendices.html#appendix-c-tma-and-gemm-intrinsics-documentation",
-    "title": "13  Appendices",
-    "section": "13.3 Appendix C: TMA and GEMM Intrinsics Documentation",
-    "text": "13.3 Appendix C: TMA and GEMM Intrinsics Documentation",
+    "title": "10  Appendices",
+    "section": "10.3 Appendix C: TMA and GEMM Intrinsics Documentation",
+    "text": "10.3 Appendix C: TMA and GEMM Intrinsics Documentation",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Appendices</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Appendices</span>"
     ]
   }
 ]
