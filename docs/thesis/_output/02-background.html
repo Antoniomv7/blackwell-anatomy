@@ -250,27 +250,27 @@ div.csl-indent {
   <li><a href="#gemm-as-a-microbenchmarking-tool" id="toc-gemm-as-a-microbenchmarking-tool" class="nav-link" data-scroll-target="#gemm-as-a-microbenchmarking-tool"><span class="header-section-number">2.4.5</span> GEMM as a Microbenchmarking Tool</a></li>
   <li><a href="#summary-2" id="toc-summary-2" class="nav-link" data-scroll-target="#summary-2"><span class="header-section-number">2.4.6</span> Summary</a></li>
   </ul></li>
-  <li><a href="#roofline-model-and-performance-metrics" id="toc-roofline-model-and-performance-metrics" class="nav-link" data-scroll-target="#roofline-model-and-performance-metrics"><span class="header-section-number">2.5</span> Roofline Model and Performance Metrics</a>
+  <li><a href="#domain-specific-languages-dsls-for-gpu-programming" id="toc-domain-specific-languages-dsls-for-gpu-programming" class="nav-link" data-scroll-target="#domain-specific-languages-dsls-for-gpu-programming"><span class="header-section-number">2.5</span> Domain-Specific Languages (DSLs) for GPU Programming</a>
   <ul class="collapse">
-  <li><a href="#the-roofline-model-fundamentals" id="toc-the-roofline-model-fundamentals" class="nav-link" data-scroll-target="#the-roofline-model-fundamentals"><span class="header-section-number">2.5.1</span> The Roofline Model: Fundamentals</a></li>
-  <li><a href="#arithmetic-intensity-in-gemm-and-ai-kernels" id="toc-arithmetic-intensity-in-gemm-and-ai-kernels" class="nav-link" data-scroll-target="#arithmetic-intensity-in-gemm-and-ai-kernels"><span class="header-section-number">2.5.2</span> Arithmetic Intensity in GEMM and AI Kernels</a></li>
-  <li><a href="#beyond-a-single-roof-hierarchical-roofline-models" id="toc-beyond-a-single-roof-hierarchical-roofline-models" class="nav-link" data-scroll-target="#beyond-a-single-roof-hierarchical-roofline-models"><span class="header-section-number">2.5.3</span> Beyond a Single Roof: Hierarchical Roofline Models</a></li>
-  <li><a href="#performance-per-watt-and-energy-aware-metrics" id="toc-performance-per-watt-and-energy-aware-metrics" class="nav-link" data-scroll-target="#performance-per-watt-and-energy-aware-metrics"><span class="header-section-number">2.5.4</span> Performance per Watt and Energy-Aware Metrics</a></li>
-  <li><a href="#memory-efficiency-and-bandwidth-utilization" id="toc-memory-efficiency-and-bandwidth-utilization" class="nav-link" data-scroll-target="#memory-efficiency-and-bandwidth-utilization"><span class="header-section-number">2.5.5</span> Memory Efficiency and Bandwidth Utilization</a></li>
-  <li><a href="#roofline-as-a-tool-for-architectural-comparison" id="toc-roofline-as-a-tool-for-architectural-comparison" class="nav-link" data-scroll-target="#roofline-as-a-tool-for-architectural-comparison"><span class="header-section-number">2.5.6</span> Roofline as a Tool for Architectural Comparison</a></li>
-  <li><a href="#summary-3" id="toc-summary-3" class="nav-link" data-scroll-target="#summary-3"><span class="header-section-number">2.5.7</span> Summary</a></li>
+  <li><a href="#motivation-for-dsls-in-gpu-computing" id="toc-motivation-for-dsls-in-gpu-computing" class="nav-link" data-scroll-target="#motivation-for-dsls-in-gpu-computing"><span class="header-section-number">2.5.1</span> Motivation for DSLs in GPU Computing</a></li>
+  <li><a href="#triton-productivity-oriented-kernel-specialization" id="toc-triton-productivity-oriented-kernel-specialization" class="nav-link" data-scroll-target="#triton-productivity-oriented-kernel-specialization"><span class="header-section-number">2.5.2</span> Triton: Productivity-Oriented Kernel Specialization</a></li>
+  <li><a href="#tk-tensor-kernel-explicit-co-design-with-tensor-cores" id="toc-tk-tensor-kernel-explicit-co-design-with-tensor-cores" class="nav-link" data-scroll-target="#tk-tensor-kernel-explicit-co-design-with-tensor-cores"><span class="header-section-number">2.5.3</span> TK (Tensor Kernel): Explicit Co-Design with Tensor Cores</a></li>
+  <li><a href="#tilelang-tiling-as-a-first-class-abstraction" id="toc-tilelang-tiling-as-a-first-class-abstraction" class="nav-link" data-scroll-target="#tilelang-tiling-as-a-first-class-abstraction"><span class="header-section-number">2.5.4</span> TileLang: Tiling as a First-Class Abstraction</a></li>
+  <li><a href="#cute-cutlass-template-based-architectural-specialization" id="toc-cute-cutlass-template-based-architectural-specialization" class="nav-link" data-scroll-target="#cute-cutlass-template-based-architectural-specialization"><span class="header-section-number">2.5.5</span> CUTE (CUTLASS): Template-Based Architectural Specialization</a></li>
+  <li><a href="#gluon-bridging-dsls-and-high-level-frameworks" id="toc-gluon-bridging-dsls-and-high-level-frameworks" class="nav-link" data-scroll-target="#gluon-bridging-dsls-and-high-level-frameworks"><span class="header-section-number">2.5.6</span> Gluon: Bridging DSLs and High-Level Frameworks</a></li>
+  <li><a href="#pallas-and-the-broader-dsl-ecosystem" id="toc-pallas-and-the-broader-dsl-ecosystem" class="nav-link" data-scroll-target="#pallas-and-the-broader-dsl-ecosystem"><span class="header-section-number">2.5.7</span> Pallas and the Broader DSL Ecosystem</a></li>
+  <li><a href="#implications-for-this-thesis" id="toc-implications-for-this-thesis" class="nav-link" data-scroll-target="#implications-for-this-thesis"><span class="header-section-number">2.5.8</span> Implications for This Thesis</a></li>
+  <li><a href="#summary-3" id="toc-summary-3" class="nav-link" data-scroll-target="#summary-3"><span class="header-section-number">2.5.9</span> Summary</a></li>
   </ul></li>
-  <li><a href="#domain-specific-languages-dsls-for-gpu-programming" id="toc-domain-specific-languages-dsls-for-gpu-programming" class="nav-link" data-scroll-target="#domain-specific-languages-dsls-for-gpu-programming"><span class="header-section-number">2.6</span> Domain-Specific Languages (DSLs) for GPU Programming</a>
+  <li><a href="#roofline-model-and-performance-metrics" id="toc-roofline-model-and-performance-metrics" class="nav-link" data-scroll-target="#roofline-model-and-performance-metrics"><span class="header-section-number">2.6</span> Roofline Model and Performance Metrics</a>
   <ul class="collapse">
-  <li><a href="#motivation-for-dsls-in-gpu-computing" id="toc-motivation-for-dsls-in-gpu-computing" class="nav-link" data-scroll-target="#motivation-for-dsls-in-gpu-computing"><span class="header-section-number">2.6.1</span> Motivation for DSLs in GPU Computing</a></li>
-  <li><a href="#triton-productivity-oriented-kernel-specialization" id="toc-triton-productivity-oriented-kernel-specialization" class="nav-link" data-scroll-target="#triton-productivity-oriented-kernel-specialization"><span class="header-section-number">2.6.2</span> Triton: Productivity-Oriented Kernel Specialization</a></li>
-  <li><a href="#tk-tensor-kernel-explicit-co-design-with-tensor-cores" id="toc-tk-tensor-kernel-explicit-co-design-with-tensor-cores" class="nav-link" data-scroll-target="#tk-tensor-kernel-explicit-co-design-with-tensor-cores"><span class="header-section-number">2.6.3</span> TK (Tensor Kernel): Explicit Co-Design with Tensor Cores</a></li>
-  <li><a href="#tilelang-tiling-as-a-first-class-abstraction" id="toc-tilelang-tiling-as-a-first-class-abstraction" class="nav-link" data-scroll-target="#tilelang-tiling-as-a-first-class-abstraction"><span class="header-section-number">2.6.4</span> TileLang: Tiling as a First-Class Abstraction</a></li>
-  <li><a href="#cute-cutlass-template-based-architectural-specialization" id="toc-cute-cutlass-template-based-architectural-specialization" class="nav-link" data-scroll-target="#cute-cutlass-template-based-architectural-specialization"><span class="header-section-number">2.6.5</span> CUTE (CUTLASS): Template-Based Architectural Specialization</a></li>
-  <li><a href="#gluon-bridging-dsls-and-high-level-frameworks" id="toc-gluon-bridging-dsls-and-high-level-frameworks" class="nav-link" data-scroll-target="#gluon-bridging-dsls-and-high-level-frameworks"><span class="header-section-number">2.6.6</span> Gluon: Bridging DSLs and High-Level Frameworks</a></li>
-  <li><a href="#pallas-and-the-broader-dsl-ecosystem" id="toc-pallas-and-the-broader-dsl-ecosystem" class="nav-link" data-scroll-target="#pallas-and-the-broader-dsl-ecosystem"><span class="header-section-number">2.6.7</span> Pallas and the Broader DSL Ecosystem</a></li>
-  <li><a href="#implications-for-this-thesis" id="toc-implications-for-this-thesis" class="nav-link" data-scroll-target="#implications-for-this-thesis"><span class="header-section-number">2.6.8</span> Implications for This Thesis</a></li>
-  <li><a href="#summary-4" id="toc-summary-4" class="nav-link" data-scroll-target="#summary-4"><span class="header-section-number">2.6.9</span> Summary</a></li>
+  <li><a href="#the-roofline-model-fundamentals" id="toc-the-roofline-model-fundamentals" class="nav-link" data-scroll-target="#the-roofline-model-fundamentals"><span class="header-section-number">2.6.1</span> The Roofline Model: Fundamentals</a></li>
+  <li><a href="#arithmetic-intensity-in-gemm-and-ai-kernels" id="toc-arithmetic-intensity-in-gemm-and-ai-kernels" class="nav-link" data-scroll-target="#arithmetic-intensity-in-gemm-and-ai-kernels"><span class="header-section-number">2.6.2</span> Arithmetic Intensity in GEMM and AI Kernels</a></li>
+  <li><a href="#beyond-a-single-roof-hierarchical-roofline-models" id="toc-beyond-a-single-roof-hierarchical-roofline-models" class="nav-link" data-scroll-target="#beyond-a-single-roof-hierarchical-roofline-models"><span class="header-section-number">2.6.3</span> Beyond a Single Roof: Hierarchical Roofline Models</a></li>
+  <li><a href="#performance-per-watt-and-energy-aware-metrics" id="toc-performance-per-watt-and-energy-aware-metrics" class="nav-link" data-scroll-target="#performance-per-watt-and-energy-aware-metrics"><span class="header-section-number">2.6.4</span> Performance per Watt and Energy-Aware Metrics</a></li>
+  <li><a href="#memory-efficiency-and-bandwidth-utilization" id="toc-memory-efficiency-and-bandwidth-utilization" class="nav-link" data-scroll-target="#memory-efficiency-and-bandwidth-utilization"><span class="header-section-number">2.6.5</span> Memory Efficiency and Bandwidth Utilization</a></li>
+  <li><a href="#roofline-as-a-tool-for-architectural-comparison" id="toc-roofline-as-a-tool-for-architectural-comparison" class="nav-link" data-scroll-target="#roofline-as-a-tool-for-architectural-comparison"><span class="header-section-number">2.6.6</span> Roofline as a Tool for Architectural Comparison</a></li>
+  <li><a href="#summary-4" id="toc-summary-4" class="nav-link" data-scroll-target="#summary-4"><span class="header-section-number">2.6.7</span> Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -488,12 +488,97 @@ div.csl-indent {
 <p>For these reasons, GEMM is adopted as the central experimental kernel in this thesis. Its analysis not only explains the performance characteristics of Hopper and Blackwell architectures, but also yields insights transferable to Edge AI accelerators, where similar constraints and trade-offs apply.</p>
 </section>
 </section>
-<section id="roofline-model-and-performance-metrics" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="roofline-model-and-performance-metrics"><span class="header-section-number">2.5</span> Roofline Model and Performance Metrics</h2>
+<section id="domain-specific-languages-dsls-for-gpu-programming" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="domain-specific-languages-dsls-for-gpu-programming"><span class="header-section-number">2.5</span> Domain-Specific Languages (DSLs) for GPU Programming</h2>
+<p>As GPU architectures evolve toward increasingly specialized and asynchronous execution models, the gap between architectural capability and software productivity widens. Traditional CUDA programming exposes low-level control but demands deep microarchitectural expertise to achieve peak efficiency, particularly for kernels such as GEMM that must carefully orchestrate data movement, tiling, and synchronization. <strong>Domain-Specific Languages (DSLs)</strong> for GPU programming have emerged to bridge this gap by providing higher-level abstractions that encode architectural knowledge while retaining fine-grained control over performance-critical details.</p>
+<p>In the context of this thesis, DSLs are especially relevant because they embody <strong>hardware–software co-design principles</strong>: they are explicitly designed around GPU execution models, memory hierarchies, and tensor acceleration units. This section reviews representative DSLs for GPU programming, with particular emphasis on <strong>TK, TileLang, CUTE (CUTLASS), and Gluon</strong>, which are most closely aligned with microarchitectural concerns and GEMM-style workloads.</p>
+<section id="motivation-for-dsls-in-gpu-computing" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="motivation-for-dsls-in-gpu-computing"><span class="header-section-number">2.5.1</span> Motivation for DSLs in GPU Computing</h3>
+<p>The primary motivation for GPU DSLs is not abstraction for its own sake, but <strong>controlled specialization</strong>. Modern AI kernels require:</p>
+<ul>
+<li>Precise tiling and data layout choices,</li>
+<li>Explicit management of shared memory and registers,</li>
+<li>Overlap of computation and data movement,</li>
+<li>Efficient use of Tensor Cores and reduced-precision formats.</li>
+</ul>
+<p>Encoding these decisions directly in CUDA leads to code that is complex, brittle, and architecture-specific. DSLs address this challenge by providing structured representations of computation and data movement that can be systematically mapped to hardware. From a micro- and nanoelectronic perspective, DSLs act as <em>software counterparts</em> to architectural primitives, enabling efficient exploitation of silicon features without sacrificing portability or maintainability.</p>
+</section>
+<section id="triton-productivity-oriented-kernel-specialization" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="triton-productivity-oriented-kernel-specialization"><span class="header-section-number">2.5.2</span> Triton: Productivity-Oriented Kernel Specialization</h3>
+<p><strong>Triton</strong> is a Python-embedded DSL designed to simplify the development of custom GPU kernels while achieving performance comparable to hand-written CUDA. It exposes a programming model centered on blocks and tiles, abstracting away some low-level details such as thread indexing while retaining explicit control over memory access patterns and parallelism <span class="citation" data-cites="tritonLang2021">(<a href="#ref-tritonLang2021" role="doc-biblioref">Tillet, Kung, and Cox 2021</a>)</span>.</p>
+<p>Triton has been particularly successful for rapid prototyping of GEMM and attention kernels in AI frameworks. However, its abstraction level prioritizes productivity and compiler-driven optimization, which can limit explicit control over certain microarchitectural features (e.g., fine-grained shared memory scheduling). As such, Triton is representative of DSLs that trade maximal control for ease of use.</p>
+</section>
+<section id="tk-tensor-kernel-explicit-co-design-with-tensor-cores" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="tk-tensor-kernel-explicit-co-design-with-tensor-cores"><span class="header-section-number">2.5.3</span> TK (Tensor Kernel): Explicit Co-Design with Tensor Cores</h3>
+<p><strong>TK (Tensor Kernel)</strong> represents a class of DSLs explicitly designed around <strong>Tensor Core-centric computation</strong>. Rather than treating tensor acceleration as an opaque backend feature, TK exposes tensor-level operations and tiling strategies as first-class constructs. This design aligns closely with the execution model of modern GPUs, where performance is dominated by how effectively Tensor Cores are fed with data.</p>
+<p>From a co-design standpoint, TK is notable because it:</p>
+<ul>
+<li>Encodes Tensor Core tile shapes and data layouts directly in the language,</li>
+<li>Makes register- and shared-memory-level data reuse explicit,</li>
+<li>Encourages software structures that map naturally to hardware pipelines.</li>
+</ul>
+<p>This explicitness is highly relevant for microbenchmarking and architectural evaluation, as it allows controlled experimentation with different tiling and scheduling strategies while preserving a clear mapping to microarchitectural resources. In this sense, TK functions as a <em>research-oriented DSL</em>, enabling exploration of architectural trade-offs without dropping to raw CUDA.</p>
+</section>
+<section id="tilelang-tiling-as-a-first-class-abstraction" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="tilelang-tiling-as-a-first-class-abstraction"><span class="header-section-number">2.5.4</span> TileLang: Tiling as a First-Class Abstraction</h3>
+<p><strong>TileLang</strong> pushes the DSL concept further by elevating <strong>tiling</strong>—the central optimization strategy in GEMM and many AI kernels—to a first-class abstraction. Instead of expressing computation in terms of scalar or vector operations, TileLang structures programs around hierarchical tiles that correspond directly to GPU execution levels (thread, warp, block, cluster).</p>
+<p>This approach is particularly powerful from a hardware–software co-design perspective:</p>
+<ul>
+<li>Tiling decisions directly reflect on-chip memory capacities and bandwidth,</li>
+<li>Hierarchical tiles map naturally to registers, shared memory, and global memory,</li>
+<li>The language structure mirrors the physical organization of the GPU.</li>
+</ul>
+<p>For micro- and nanoelectronic design, TileLang is interesting because it makes the <strong>constraints of the memory hierarchy explicit in the software representation</strong>. This transparency facilitates reasoning about why certain architectural features (e.g., larger shared memory, faster on-chip interconnects) translate into performance gains for specific workloads.</p>
+</section>
+<section id="cute-cutlass-template-based-architectural-specialization" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="cute-cutlass-template-based-architectural-specialization"><span class="header-section-number">2.5.5</span> CUTE (CUTLASS): Template-Based Architectural Specialization</h3>
+<p><strong>CUTE</strong>, a core component of NVIDIA’s <strong>CUTLASS</strong> library, is a C++ template-based DSL designed to express high-performance tensor operations in a way that is both generic and architecture-aware <span class="citation" data-cites="cutlass2023">(<a href="#ref-cutlass2023" role="doc-biblioref">NVIDIA 2023</a>)</span>. Rather than a standalone language, CUTE provides abstractions for tensor layouts, tiling, and data movement that are resolved at compile time.</p>
+<p>CUTE is particularly significant because it underpins many production-grade GEMM kernels used in cuBLAS and related libraries. Its design reflects deep microarchitectural insight:</p>
+<ul>
+<li>Tensor layouts encode memory coalescing and alignment constraints,</li>
+<li>Tiling abstractions map directly to Tensor Core shapes,</li>
+<li>Compile-time specialization enables zero-overhead abstractions.</li>
+</ul>
+<p>From a co-design perspective, CUTE exemplifies how <strong>DSL concepts can be embedded within systems-level programming languages</strong> to achieve both performance and portability. It also illustrates why new architectures require corresponding software evolution: changes in Tensor Core shapes or memory hierarchy necessitate new template instantiations and layout strategies.</p>
+</section>
+<section id="gluon-bridging-dsls-and-high-level-frameworks" class="level3" data-number="2.5.6">
+<h3 data-number="2.5.6" class="anchored" data-anchor-id="gluon-bridging-dsls-and-high-level-frameworks"><span class="header-section-number">2.5.6</span> Gluon: Bridging DSLs and High-Level Frameworks</h3>
+<p><strong>Gluon</strong> occupies a complementary position in the DSL landscape by focusing on <strong>integration with higher-level frameworks</strong> while preserving the ability to express hardware-efficient kernels. Rather than targeting only kernel authors, Gluon aims to connect model-level abstractions with low-level execution strategies.</p>
+<p>This bridging role is particularly relevant for Edge AI and research workflows, where rapid iteration and deployment matter as much as raw performance. By enabling DSL-defined kernels to be composed within larger computational graphs, Gluon supports end-to-end co-design: architectural constraints influence kernel structure, which in turn informs model design choices.</p>
+<p>From a microarchitectural viewpoint, Gluon demonstrates how DSLs can propagate hardware-awareness upward in the software stack, influencing not only kernel performance but also algorithmic structure and deployment decisions.</p>
+</section>
+<section id="pallas-and-the-broader-dsl-ecosystem" class="level3" data-number="2.5.7">
+<h3 data-number="2.5.7" class="anchored" data-anchor-id="pallas-and-the-broader-dsl-ecosystem"><span class="header-section-number">2.5.7</span> Pallas and the Broader DSL Ecosystem</h3>
+<p><strong>Pallas</strong>, developed within the JAX ecosystem, represents another approach to GPU DSLs by integrating kernel-level control into a functional, compiler-driven framework <span class="citation" data-cites="pallas2023">(<a href="#ref-pallas2023" role="doc-biblioref">Google 2023</a>)</span>. While powerful, Pallas emphasizes composability and compiler optimization over explicit microarchitectural control, positioning it differently from DSLs such as TK, TileLang, and CUTE.</p>
+<p>Collectively, these DSLs illustrate a spectrum of design points:</p>
+<ul>
+<li><strong>Productivity-oriented</strong> (Triton, Pallas),</li>
+<li><strong>Architecture-explicit and research-focused</strong> (TK, TileLang),</li>
+<li><strong>Production-grade and template-specialized</strong> (CUTE),</li>
+<li><strong>Framework-bridging</strong> (Gluon).</li>
+</ul>
+</section>
+<section id="implications-for-this-thesis" class="level3" data-number="2.5.8">
+<h3 data-number="2.5.8" class="anchored" data-anchor-id="implications-for-this-thesis"><span class="header-section-number">2.5.8</span> Implications for This Thesis</h3>
+<p>The emphasis on TK, TileLang, CUTE, and Gluon is deliberate. These DSLs provide:</p>
+<ul>
+<li>Explicit control over tiling and data movement,</li>
+<li>Direct mapping to Tensor Core execution,</li>
+<li>A clear connection between software structure and microarchitectural resources.</li>
+</ul>
+<p>As such, they are particularly well suited for <strong>GEMM microbenchmarking and architectural analysis</strong>, enabling systematic exploration of how Hopper and Blackwell features affect achievable performance. Moreover, insights gained from these DSLs are transferable to Edge AI accelerator design, where similar constraints on memory, precision, and energy dominate.</p>
+</section>
+<section id="summary-3" class="level3" data-number="2.5.9">
+<h3 data-number="2.5.9" class="anchored" data-anchor-id="summary-3"><span class="header-section-number">2.5.9</span> Summary</h3>
+<p>Domain-Specific Languages for GPU programming have become essential tools for exploiting modern architectures. They encode hardware knowledge in software abstractions, enabling efficient use of increasingly complex microarchitectural features. DSLs such as TK, TileLang, CUTE, and Gluon exemplify the tight coupling between hardware evolution and software design, reinforcing the central thesis that <strong>new architectures demand new programming paradigms</strong>.</p>
+</section>
+</section>
+<section id="roofline-model-and-performance-metrics" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="roofline-model-and-performance-metrics"><span class="header-section-number">2.6</span> Roofline Model and Performance Metrics</h2>
 <p>To rigorously evaluate the efficiency of modern GPU architectures, raw peak specifications (e.g., TFLOPS) are insufficient. What ultimately matters is how close real workloads can approach these peaks under practical constraints imposed by memory bandwidth, data movement, and power. The <strong>Roofline model</strong> provides a unifying analytical framework to reason about these limits by linking algorithmic characteristics to architectural capabilities.</p>
 <p>In this thesis, the Roofline model is adopted as the primary performance analysis tool to interpret GEMM microbenchmark results on Hopper and Blackwell architectures. Beyond peak performance, complementary metrics such as performance per watt and memory efficiency are introduced to reflect constraints that are especially relevant for Edge AI.</p>
-<section id="the-roofline-model-fundamentals" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="the-roofline-model-fundamentals"><span class="header-section-number">2.5.1</span> The Roofline Model: Fundamentals</h3>
+<section id="the-roofline-model-fundamentals" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="the-roofline-model-fundamentals"><span class="header-section-number">2.6.1</span> The Roofline Model: Fundamentals</h3>
 <p>The Roofline model characterizes the maximum attainable performance of a kernel as a function of its <strong>arithmetic intensity (AI)</strong>, defined as the ratio of floating-point operations to bytes transferred from main memory <span class="citation" data-cites="williams2009roofline">(<a href="#ref-williams2009roofline" role="doc-biblioref">Williams, Waterman, and Patterson 2009</a>)</span>. Formally,</p>
 <p>[ ( P_{}, ; B_{} ),]</p>
 <p>where (P_{}) is the peak compute throughput of the processor and (B_{}) is the achievable memory bandwidth.</p>
@@ -505,32 +590,32 @@ div.csl-indent {
 <p>The intersection point between these regions defines the minimum arithmetic intensity required to fully utilize the compute units.</p>
 <p>From a microarchitectural perspective, Roofline exposes the balance—or imbalance—between compute resources and the memory subsystem. Architectural evolution from Volta to Blackwell can be interpreted as a continuous effort to raise both the roof (through higher Tensor Core throughput) and the slope (through increased memory bandwidth and improved data movement mechanisms).</p>
 </section>
-<section id="arithmetic-intensity-in-gemm-and-ai-kernels" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="arithmetic-intensity-in-gemm-and-ai-kernels"><span class="header-section-number">2.5.2</span> Arithmetic Intensity in GEMM and AI Kernels</h3>
+<section id="arithmetic-intensity-in-gemm-and-ai-kernels" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="arithmetic-intensity-in-gemm-and-ai-kernels"><span class="header-section-number">2.6.2</span> Arithmetic Intensity in GEMM and AI Kernels</h3>
 <p>GEMM is particularly well suited for Roofline analysis because its arithmetic intensity is analytically tractable and tunable through blocking strategies. For an ideal GEMM implementation, arithmetic intensity increases with matrix size and effective data reuse, enabling execution in the compute-bound regime on sufficiently large problems.</p>
 <p>However, real implementations deviate from this ideal due to finite on-chip memory, imperfect reuse, and overheads associated with synchronization and data transfers. These effects become more pronounced in Edge AI, where smaller batch sizes and reduced memory capacity often force GEMM into the memory-bound regime.</p>
 <p>By systematically varying problem sizes and data layouts, GEMM microbenchmarks allow direct observation of transitions between Roofline regimes. This capability is central to the experimental methodology of this thesis, as it enables attribution of performance gaps to either compute limitations or memory inefficiencies.</p>
 </section>
-<section id="beyond-a-single-roof-hierarchical-roofline-models" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="beyond-a-single-roof-hierarchical-roofline-models"><span class="header-section-number">2.5.3</span> Beyond a Single Roof: Hierarchical Roofline Models</h3>
+<section id="beyond-a-single-roof-hierarchical-roofline-models" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="beyond-a-single-roof-hierarchical-roofline-models"><span class="header-section-number">2.6.3</span> Beyond a Single Roof: Hierarchical Roofline Models</h3>
 <p>Modern GPUs feature <strong>multi-level memory hierarchies</strong>, including registers, shared memory, L2 cache, and off-chip HBM. A single Roofline curve based on off-chip bandwidth may therefore obscure important bottlenecks at intermediate levels.</p>
 <p>Hierarchical or multi-roof Roofline models extend the original framework by introducing separate bandwidth ceilings for different memory levels <span class="citation" data-cites="williams2009roofline">(<a href="#ref-williams2009roofline" role="doc-biblioref">Williams, Waterman, and Patterson 2009</a>)</span>. This approach is particularly relevant for architectures such as Hopper and Blackwell, where explicit data movement between global and shared memory (e.g., via TMA) can significantly alter effective bandwidth.</p>
 <p>From a co-design perspective, hierarchical Roofline analysis highlights where software must intervene to exploit on-chip locality. If performance is bounded by shared memory bandwidth rather than HBM, architectural investment in Tensor Cores cannot be fully realized without corresponding kernel restructuring.</p>
 </section>
-<section id="performance-per-watt-and-energy-aware-metrics" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="performance-per-watt-and-energy-aware-metrics"><span class="header-section-number">2.5.4</span> Performance per Watt and Energy-Aware Metrics</h3>
+<section id="performance-per-watt-and-energy-aware-metrics" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="performance-per-watt-and-energy-aware-metrics"><span class="header-section-number">2.6.4</span> Performance per Watt and Energy-Aware Metrics</h3>
 <p>While the Roofline model focuses on performance limits, <strong>energy efficiency</strong> is a first-order constraint in both data center and Edge AI contexts. Performance per watt (GFLOPS/W) provides a direct measure of how effectively an architecture converts power into useful computation.</p>
 <p>Architectural features such as reduced-precision Tensor Cores and high-bandwidth on-chip memories aim to improve this metric by reducing energy per operation and per byte moved <span class="citation" data-cites="nvidiaH100Whitepaper2022 nvidiaBlackwellArchitecturePage">(<a href="#ref-nvidiaH100Whitepaper2022" role="doc-biblioref">NVIDIA 2022a</a>, <a href="#ref-nvidiaBlackwellArchitecturePage" role="doc-biblioref">2025d</a>)</span>. However, as with raw performance, these gains are only realized when software achieves high utilization.</p>
 <p>In Edge AI, performance per watt often dominates over absolute performance. Consequently, Roofline analysis in this thesis is complemented by energy-normalized metrics to capture trade-offs between throughput and power consumption, providing a more holistic evaluation of architectural efficiency.</p>
 </section>
-<section id="memory-efficiency-and-bandwidth-utilization" class="level3" data-number="2.5.5">
-<h3 data-number="2.5.5" class="anchored" data-anchor-id="memory-efficiency-and-bandwidth-utilization"><span class="header-section-number">2.5.5</span> Memory Efficiency and Bandwidth Utilization</h3>
+<section id="memory-efficiency-and-bandwidth-utilization" class="level3" data-number="2.6.5">
+<h3 data-number="2.6.5" class="anchored" data-anchor-id="memory-efficiency-and-bandwidth-utilization"><span class="header-section-number">2.6.5</span> Memory Efficiency and Bandwidth Utilization</h3>
 <p>Another critical metric is <strong>memory efficiency</strong>, defined as the fraction of theoretical peak bandwidth that is actually achieved by a kernel. Low bandwidth utilization may indicate suboptimal access patterns, insufficient concurrency, or architectural mismatches between memory and compute.</p>
 <p>For GEMM, high memory efficiency is typically achieved only when data reuse is maximized and transfers are overlapped with computation. Hopper’s asynchronous data movement primitives and Blackwell’s further enhancements are explicitly designed to raise effective bandwidth utilization, but their impact must be quantified empirically.</p>
 <p>Memory efficiency metrics are particularly relevant for Edge AI accelerators, where bandwidth is scarce and often shared across heterogeneous components. Insights gained from high-end GPU analysis can therefore inform the design of more balanced edge-oriented architectures.</p>
 </section>
-<section id="roofline-as-a-tool-for-architectural-comparison" class="level3" data-number="2.5.6">
-<h3 data-number="2.5.6" class="anchored" data-anchor-id="roofline-as-a-tool-for-architectural-comparison"><span class="header-section-number">2.5.6</span> Roofline as a Tool for Architectural Comparison</h3>
+<section id="roofline-as-a-tool-for-architectural-comparison" class="level3" data-number="2.6.6">
+<h3 data-number="2.6.6" class="anchored" data-anchor-id="roofline-as-a-tool-for-architectural-comparison"><span class="header-section-number">2.6.6</span> Roofline as a Tool for Architectural Comparison</h3>
 <p>One of the strengths of the Roofline model is its suitability for <strong>cross-architecture comparison</strong>. By normalizing performance against architectural ceilings, it becomes possible to compare how efficiently different generations (e.g., Hopper vs.&nbsp;Blackwell) exploit their available resources.</p>
 <p>In this thesis, Roofline plots are used to:</p>
 <ul>
@@ -540,95 +625,10 @@ div.csl-indent {
 </ul>
 <p>This analytical approach aligns naturally with the goals of micro- and nanoelectronic design: evaluating whether increased silicon complexity and power budget deliver proportional gains under realistic workloads.</p>
 </section>
-<section id="summary-3" class="level3" data-number="2.5.7">
-<h3 data-number="2.5.7" class="anchored" data-anchor-id="summary-3"><span class="header-section-number">2.5.7</span> Summary</h3>
+<section id="summary-4" class="level3" data-number="2.6.7">
+<h3 data-number="2.6.7" class="anchored" data-anchor-id="summary-4"><span class="header-section-number">2.6.7</span> Summary</h3>
 <p>The Roofline model provides a principled framework for analyzing performance limits in AI workloads by unifying algorithmic and architectural considerations. When combined with complementary metrics such as performance per watt and memory efficiency, it enables a comprehensive assessment of efficiency across the compute–memory–energy spectrum.</p>
 <p>In this thesis, Roofline analysis forms the backbone of the experimental evaluation, linking GEMM microbenchmark results to architectural features in Hopper and Blackwell. The next chapter builds on this foundation by detailing the <strong>experimental methodology</strong>, including benchmark design, measurement procedures, and evaluation criteria.</p>
-</section>
-</section>
-<section id="domain-specific-languages-dsls-for-gpu-programming" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="domain-specific-languages-dsls-for-gpu-programming"><span class="header-section-number">2.6</span> Domain-Specific Languages (DSLs) for GPU Programming</h2>
-<p>As GPU architectures evolve toward increasingly specialized and asynchronous execution models, the gap between architectural capability and software productivity widens. Traditional CUDA programming exposes low-level control but demands deep microarchitectural expertise to achieve peak efficiency, particularly for kernels such as GEMM that must carefully orchestrate data movement, tiling, and synchronization. <strong>Domain-Specific Languages (DSLs)</strong> for GPU programming have emerged to bridge this gap by providing higher-level abstractions that encode architectural knowledge while retaining fine-grained control over performance-critical details.</p>
-<p>In the context of this thesis, DSLs are especially relevant because they embody <strong>hardware–software co-design principles</strong>: they are explicitly designed around GPU execution models, memory hierarchies, and tensor acceleration units. This section reviews representative DSLs for GPU programming, with particular emphasis on <strong>TK, TileLang, CUTE (CUTLASS), and Gluon</strong>, which are most closely aligned with microarchitectural concerns and GEMM-style workloads.</p>
-<section id="motivation-for-dsls-in-gpu-computing" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="motivation-for-dsls-in-gpu-computing"><span class="header-section-number">2.6.1</span> Motivation for DSLs in GPU Computing</h3>
-<p>The primary motivation for GPU DSLs is not abstraction for its own sake, but <strong>controlled specialization</strong>. Modern AI kernels require:</p>
-<ul>
-<li>Precise tiling and data layout choices,</li>
-<li>Explicit management of shared memory and registers,</li>
-<li>Overlap of computation and data movement,</li>
-<li>Efficient use of Tensor Cores and reduced-precision formats.</li>
-</ul>
-<p>Encoding these decisions directly in CUDA leads to code that is complex, brittle, and architecture-specific. DSLs address this challenge by providing structured representations of computation and data movement that can be systematically mapped to hardware. From a micro- and nanoelectronic perspective, DSLs act as <em>software counterparts</em> to architectural primitives, enabling efficient exploitation of silicon features without sacrificing portability or maintainability.</p>
-</section>
-<section id="triton-productivity-oriented-kernel-specialization" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="triton-productivity-oriented-kernel-specialization"><span class="header-section-number">2.6.2</span> Triton: Productivity-Oriented Kernel Specialization</h3>
-<p><strong>Triton</strong> is a Python-embedded DSL designed to simplify the development of custom GPU kernels while achieving performance comparable to hand-written CUDA. It exposes a programming model centered on blocks and tiles, abstracting away some low-level details such as thread indexing while retaining explicit control over memory access patterns and parallelism <span class="citation" data-cites="tritonLang2021">(<a href="#ref-tritonLang2021" role="doc-biblioref">Tillet, Kung, and Cox 2021</a>)</span>.</p>
-<p>Triton has been particularly successful for rapid prototyping of GEMM and attention kernels in AI frameworks. However, its abstraction level prioritizes productivity and compiler-driven optimization, which can limit explicit control over certain microarchitectural features (e.g., fine-grained shared memory scheduling). As such, Triton is representative of DSLs that trade maximal control for ease of use.</p>
-</section>
-<section id="tk-tensor-kernel-explicit-co-design-with-tensor-cores" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="tk-tensor-kernel-explicit-co-design-with-tensor-cores"><span class="header-section-number">2.6.3</span> TK (Tensor Kernel): Explicit Co-Design with Tensor Cores</h3>
-<p><strong>TK (Tensor Kernel)</strong> represents a class of DSLs explicitly designed around <strong>Tensor Core-centric computation</strong>. Rather than treating tensor acceleration as an opaque backend feature, TK exposes tensor-level operations and tiling strategies as first-class constructs. This design aligns closely with the execution model of modern GPUs, where performance is dominated by how effectively Tensor Cores are fed with data.</p>
-<p>From a co-design standpoint, TK is notable because it:</p>
-<ul>
-<li>Encodes Tensor Core tile shapes and data layouts directly in the language,</li>
-<li>Makes register- and shared-memory-level data reuse explicit,</li>
-<li>Encourages software structures that map naturally to hardware pipelines.</li>
-</ul>
-<p>This explicitness is highly relevant for microbenchmarking and architectural evaluation, as it allows controlled experimentation with different tiling and scheduling strategies while preserving a clear mapping to microarchitectural resources. In this sense, TK functions as a <em>research-oriented DSL</em>, enabling exploration of architectural trade-offs without dropping to raw CUDA.</p>
-</section>
-<section id="tilelang-tiling-as-a-first-class-abstraction" class="level3" data-number="2.6.4">
-<h3 data-number="2.6.4" class="anchored" data-anchor-id="tilelang-tiling-as-a-first-class-abstraction"><span class="header-section-number">2.6.4</span> TileLang: Tiling as a First-Class Abstraction</h3>
-<p><strong>TileLang</strong> pushes the DSL concept further by elevating <strong>tiling</strong>—the central optimization strategy in GEMM and many AI kernels—to a first-class abstraction. Instead of expressing computation in terms of scalar or vector operations, TileLang structures programs around hierarchical tiles that correspond directly to GPU execution levels (thread, warp, block, cluster).</p>
-<p>This approach is particularly powerful from a hardware–software co-design perspective:</p>
-<ul>
-<li>Tiling decisions directly reflect on-chip memory capacities and bandwidth,</li>
-<li>Hierarchical tiles map naturally to registers, shared memory, and global memory,</li>
-<li>The language structure mirrors the physical organization of the GPU.</li>
-</ul>
-<p>For micro- and nanoelectronic design, TileLang is interesting because it makes the <strong>constraints of the memory hierarchy explicit in the software representation</strong>. This transparency facilitates reasoning about why certain architectural features (e.g., larger shared memory, faster on-chip interconnects) translate into performance gains for specific workloads.</p>
-</section>
-<section id="cute-cutlass-template-based-architectural-specialization" class="level3" data-number="2.6.5">
-<h3 data-number="2.6.5" class="anchored" data-anchor-id="cute-cutlass-template-based-architectural-specialization"><span class="header-section-number">2.6.5</span> CUTE (CUTLASS): Template-Based Architectural Specialization</h3>
-<p><strong>CUTE</strong>, a core component of NVIDIA’s <strong>CUTLASS</strong> library, is a C++ template-based DSL designed to express high-performance tensor operations in a way that is both generic and architecture-aware <span class="citation" data-cites="cutlass2023">(<a href="#ref-cutlass2023" role="doc-biblioref">NVIDIA 2023</a>)</span>. Rather than a standalone language, CUTE provides abstractions for tensor layouts, tiling, and data movement that are resolved at compile time.</p>
-<p>CUTE is particularly significant because it underpins many production-grade GEMM kernels used in cuBLAS and related libraries. Its design reflects deep microarchitectural insight:</p>
-<ul>
-<li>Tensor layouts encode memory coalescing and alignment constraints,</li>
-<li>Tiling abstractions map directly to Tensor Core shapes,</li>
-<li>Compile-time specialization enables zero-overhead abstractions.</li>
-</ul>
-<p>From a co-design perspective, CUTE exemplifies how <strong>DSL concepts can be embedded within systems-level programming languages</strong> to achieve both performance and portability. It also illustrates why new architectures require corresponding software evolution: changes in Tensor Core shapes or memory hierarchy necessitate new template instantiations and layout strategies.</p>
-</section>
-<section id="gluon-bridging-dsls-and-high-level-frameworks" class="level3" data-number="2.6.6">
-<h3 data-number="2.6.6" class="anchored" data-anchor-id="gluon-bridging-dsls-and-high-level-frameworks"><span class="header-section-number">2.6.6</span> Gluon: Bridging DSLs and High-Level Frameworks</h3>
-<p><strong>Gluon</strong> occupies a complementary position in the DSL landscape by focusing on <strong>integration with higher-level frameworks</strong> while preserving the ability to express hardware-efficient kernels. Rather than targeting only kernel authors, Gluon aims to connect model-level abstractions with low-level execution strategies.</p>
-<p>This bridging role is particularly relevant for Edge AI and research workflows, where rapid iteration and deployment matter as much as raw performance. By enabling DSL-defined kernels to be composed within larger computational graphs, Gluon supports end-to-end co-design: architectural constraints influence kernel structure, which in turn informs model design choices.</p>
-<p>From a microarchitectural viewpoint, Gluon demonstrates how DSLs can propagate hardware-awareness upward in the software stack, influencing not only kernel performance but also algorithmic structure and deployment decisions.</p>
-</section>
-<section id="pallas-and-the-broader-dsl-ecosystem" class="level3" data-number="2.6.7">
-<h3 data-number="2.6.7" class="anchored" data-anchor-id="pallas-and-the-broader-dsl-ecosystem"><span class="header-section-number">2.6.7</span> Pallas and the Broader DSL Ecosystem</h3>
-<p><strong>Pallas</strong>, developed within the JAX ecosystem, represents another approach to GPU DSLs by integrating kernel-level control into a functional, compiler-driven framework <span class="citation" data-cites="pallas2023">(<a href="#ref-pallas2023" role="doc-biblioref">Google 2023</a>)</span>. While powerful, Pallas emphasizes composability and compiler optimization over explicit microarchitectural control, positioning it differently from DSLs such as TK, TileLang, and CUTE.</p>
-<p>Collectively, these DSLs illustrate a spectrum of design points:</p>
-<ul>
-<li><strong>Productivity-oriented</strong> (Triton, Pallas),</li>
-<li><strong>Architecture-explicit and research-focused</strong> (TK, TileLang),</li>
-<li><strong>Production-grade and template-specialized</strong> (CUTE),</li>
-<li><strong>Framework-bridging</strong> (Gluon).</li>
-</ul>
-</section>
-<section id="implications-for-this-thesis" class="level3" data-number="2.6.8">
-<h3 data-number="2.6.8" class="anchored" data-anchor-id="implications-for-this-thesis"><span class="header-section-number">2.6.8</span> Implications for This Thesis</h3>
-<p>The emphasis on TK, TileLang, CUTE, and Gluon is deliberate. These DSLs provide:</p>
-<ul>
-<li>Explicit control over tiling and data movement,</li>
-<li>Direct mapping to Tensor Core execution,</li>
-<li>A clear connection between software structure and microarchitectural resources.</li>
-</ul>
-<p>As such, they are particularly well suited for <strong>GEMM microbenchmarking and architectural analysis</strong>, enabling systematic exploration of how Hopper and Blackwell features affect achievable performance. Moreover, insights gained from these DSLs are transferable to Edge AI accelerator design, where similar constraints on memory, precision, and energy dominate.</p>
-</section>
-<section id="summary-4" class="level3" data-number="2.6.9">
-<h3 data-number="2.6.9" class="anchored" data-anchor-id="summary-4"><span class="header-section-number">2.6.9</span> Summary</h3>
-<p>Domain-Specific Languages for GPU programming have become essential tools for exploiting modern architectures. They encode hardware knowledge in software abstractions, enabling efficient use of increasingly complex microarchitectural features. DSLs such as TK, TileLang, CUTE, and Gluon exemplify the tight coupling between hardware evolution and software design, reinforcing the central thesis that <strong>new architectures demand new programming paradigms</strong>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
