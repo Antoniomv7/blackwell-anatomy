@@ -1,4 +1,4 @@
-# Chapter 3 – Architecture Comparison: Hopper vs Blackwell
+# Architecture Comparison: Hopper vs Blackwell
 ## Overview of Hopper Architecture
 ## Overview of Blackwell Architecture
 ## Key Innovations in Blackwell

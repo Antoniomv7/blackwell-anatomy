@@ -1,4 +1,4 @@
-# Chapter 6 – Methodology and Experimental Setup
+# Methodology and Experimental Setup
 ## Objectives of Benchmarking
 ## Hardware Platforms and Specifications
 ### Hopper H100

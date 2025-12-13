@@ -1,4 +1,4 @@
-# Chapter 7 – Results and Discussion
+# Results and Discussion
 ## Performance Comparison Across Data Types
 ## Analysis of Performance per Watt
 ## Memory Bandwidth Observations

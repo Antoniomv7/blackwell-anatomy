@@ -8,19 +8,31 @@ book:
   author: "Antonio Moral Villarín"
   date: "2026"
   chapters:
-    - abstract.qmd
-    - acknowledgements.qmd
-    - index.qmd
-    - 01-intro.qmd
-    - 02-background.qmd
-    - 03-architecture.qmd
-    - 04-metrics.qmd
-    - 05-programming.qmd
-    - 06-methodology.qmd
-    - 07-results.qmd
-    - 08-conclusion.qmd
-    - 09-references.qmd
-    - 10-appendices.qmd
+    - part: "Part I: Preliminaries"
+      chapters:
+        - abstract.qmd
+        - acknowledgements.qmd
+        - index.qmd
+    - part: "Part II: Introduction and Theoretical Background"
+      chapters:
+        - 01-intro.qmd
+        - 02-background.qmd
+    - part: "Part III: System Design"
+      chapters:
+        - 03-architecture.qmd
+        - 04-metrics.qmd
+    - part: "Part IV: Implementation and Methodology"
+      chapters:
+        - 05-programming.qmd
+        - 06-methodology.qmd
+    - part: "Part V: Results and Discussion"
+      chapters:
+        - 07-results.qmd
+        - 08-conclusion.qmd
+    - part: "Part VI: References and Appendices"
+      chapters:
+        - 09-references.qmd
+        - 10-appendices.qmd
 
 bibliography: references.bib
 
@@ -35,7 +47,7 @@ format:
       - right=2cm
     lof: true # List of Figures, automatic
     lot: true # List of Tables, automatic
-    toc: true # Table of Contents, autoamatic
+    toc: true # Table of Contents, automatic
     number-sections: true
     colorlinks: true
     code-line-numbers: true

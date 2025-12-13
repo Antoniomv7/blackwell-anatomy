@@ -2,7 +2,7 @@
 \pagenumbering{arabic}
 ```
 
-# Chapter 1 – Introduction
+# Introduction
 ## Motivation and Context: The Need for Hardware–Software Co-Design
 
 The rapid evolution of artificial intelligence (AI), particularly deep learning models based on large-scale matrix operations, has fundamentally reshaped the requirements imposed on modern computing systems. Contemporary workloads such as transformer-based models, large language models (LLMs), and multimodal AI systems exhibit unprecedented computational intensity, memory bandwidth demand, and energy consumption. These characteristics challenge traditional computing paradigms and demand a holistic approach in which **hardware and software are designed in close coordination**, rather than as independent layers of abstraction [@jouppi2017datacenter; @sze2020efficient].

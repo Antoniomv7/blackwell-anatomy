@@ -1,4 +1,4 @@
-# Chapter 5 – Programming Models for Modern GPUs
+# Programming Models for Modern GPUs
 ## Introduction to GPU DSLs for Performance
 ## Triton
 ## ThunderKittens (TK)

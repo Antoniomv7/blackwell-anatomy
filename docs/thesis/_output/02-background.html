@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Chapter 2 – Background and Related Work – The Anatomy of an Efficient Blackwell GEMM</title>
+<title>2&nbsp; Background and Related Work – The Anatomy of an Efficient Blackwell GEMM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-background.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2 – Background and Related Work</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html">Part II: Introduction and Theoretical Background</a></li><li class="breadcrumb-item"><a href="./02-background.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Background and Related Work</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,84 +128,150 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./abstract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">index.html</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Introduction and Theoretical Background</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1 – Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-background.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2 – Background and Related Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Background and Related Work</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: System Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Architecture Comparison: Hopper vs Blackwell</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4 – Metrics for GPU Efficiency</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metrics for GPU Efficiency</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Implementation and Methodology</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5 – Programming Models for Modern GPUs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Programming Models for Modern GPUs</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-methodology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chapter 6 – Methodology and Experimental Setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Methodology and Experimental Setup</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Results and Discussion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-results.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7 – Results and Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results and Discussion</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8 – Conclusions and Future Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conclusions and Future Work</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part VI: References and Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-appendices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -278,9 +344,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html">Part II: Introduction and Theoretical Background</a></li><li class="breadcrumb-item"><a href="./02-background.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Background and Related Work</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2 – Background and Related Work</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Background and Related Work</span></h1>
 </div>
 
 
@@ -298,7 +364,7 @@ div.csl-indent {
 
 
 <p>The rapid evolution of artificial intelligence workloads over the last decade has fundamentally reshaped the design space of high-performance and embedded computing systems. GPUs, originally conceived as fixed-function graphics accelerators, have progressively evolved into highly programmable, throughput-oriented processors optimized for data-parallel workloads. This evolution has been driven not only by raw performance demands, but by the changing <strong>computational structure of AI models</strong>, the growing dominance of data movement and energy constraints, and the breakdown of traditional scaling laws at the device level.</p>
-<p>This chapter provides the architectural background necessary to contextualize the experimental analysis presented later in this thesis. In particular, it traces the evolution of NVIDIA GPU architectures from Volta to Blackwell, emphasizing how each generation introduces architectural mechanisms explicitly designed to address emerging limitations in efficiency, scalability, and programmability. The goal is to motivate, from a micro- and nanoelectronic perspective, <strong>why new architectures are required</strong>, and why incremental improvements are insufficient to sustain AI performance growth—especially with relevance to Edge AI constraints.</p>
+<p>This chapter provides the architectural background necessary to contextualize the experimental analysis presented later in this thesis. In particular, it traces the evolution of NVIDIA GPU architectures from Volta to Blackwell, emphasizing how each generation introduces architectural mechanisms explicitly designed to address emerging limitations in efficiency, scalability, and programmability. The goal is to motivate, from a micro and nanoelectronic perspective, <strong>why new architectures are required</strong>, and why incremental improvements are insufficient to sustain AI performance growth.</p>
 <section id="evolution-of-gpu-architectures-from-volta-to-blackwell" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="evolution-of-gpu-architectures-from-volta-to-blackwell"><span class="header-section-number">2.1</span> Evolution of GPU Architectures: From Volta to Blackwell</h2>
 <section id="volta-tensor-cores-and-the-shift-toward-ai-centric-design" class="level3" data-number="2.1.1">
@@ -315,14 +381,14 @@ div.csl-indent {
 <section id="hopper-asynchronous-execution-and-data-movement-awareness" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="hopper-asynchronous-execution-and-data-movement-awareness"><span class="header-section-number">2.1.3</span> Hopper: Asynchronous Execution and Data Movement Awareness</h3>
 <p>The Hopper architecture (H100) represents a qualitative shift from compute-centric optimization toward <strong>data-movement-aware architecture</strong>. While Hopper continues to enhance Tensor Core throughput and precision support (including FP8), its most significant innovations address how data is transferred, scheduled, and synchronized across the chip <span class="citation" data-cites="nvidiaHopperInDepthBlog2022 nvidiaH100Whitepaper2022">(<a href="#ref-nvidiaHopperInDepthBlog2022" role="doc-biblioref">NVIDIA 2022b</a>, <a href="#ref-nvidiaH100Whitepaper2022" role="doc-biblioref">2022a</a>)</span>.</p>
-<p>Key features such as <strong>thread block clusters</strong> and the <strong>Tensor Memory Accelerator (TMA)</strong> enable more explicit control over data movement between global memory and shared memory, allowing software to overlap computation and communication more effectively. From a microelectronic standpoint, this reflects an architectural acknowledgment that memory accesses—not arithmetic—dominate both latency and energy consumption.</p>
+<p>Key features such as <strong>thread block clusters</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and the <strong>Tensor Memory Accelerator (TMA)</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> enable more explicit control over data movement between global memory and shared memory, allowing software to overlap computation and communication more effectively. From a microelectronic standpoint, this reflects an architectural acknowledgment that memory accesses—not arithmetic—dominate both latency and energy consumption.</p>
 <p>Hopper therefore deepens the hardware–software contract: performance is no longer achieved automatically by launching enough threads, but by structuring computation to align with architectural primitives. This shift is particularly relevant for microbenchmarking studies, as it exposes how architectural features translate into achievable efficiency only under specific software conditions.</p>
 </section>
 <section id="blackwell-architecture-for-scaling-efficiency-and-reduced-precision" class="level3" data-number="2.1.4">
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="blackwell-architecture-for-scaling-efficiency-and-reduced-precision"><span class="header-section-number">2.1.4</span> Blackwell: Architecture for Scaling, Efficiency, and Reduced Precision</h3>
-<p>Blackwell (B200) extends the Hopper philosophy further, motivated by the explosive growth of large language models (LLMs) and <em>Mixture-of-Experts</em> architectures. These models stress not only compute and memory, but also <strong>system-level scalability and energy efficiency</strong>, pushing existing architectural paradigms to their limits <span class="citation" data-cites="nvidiaBlackwellArchitecturePage">(<a href="#ref-nvidiaBlackwellArchitecturePage" role="doc-biblioref">NVIDIA 2025d</a>)</span>.</p>
+<p>Blackwell (B200) extends the Hopper philosophy further, motivated by the explosive growth of large language models (LLMs) and <em>Mixture-of-Experts</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> architectures. These models stress in compute, memory and also <strong>system-level scalability and energy efficiency</strong>, pushing existing architectural paradigms to their limits <span class="citation" data-cites="nvidiaBlackwellArchitecturePage">(<a href="#ref-nvidiaBlackwellArchitecturePage" role="doc-biblioref">NVIDIA 2025d</a>)</span>.</p>
 <p>A defining characteristic of Blackwell is its support for more aggressive reduced-precision formats, including FP4 with microscaling (e.g., NVFP4), alongside second-generation Transformer Engine support <span class="citation" data-cites="nvidiaNVFP4Blog2025">(<a href="#ref-nvidiaNVFP4Blog2025" role="doc-biblioref">NVIDIA 2025c</a>)</span>. These formats significantly reduce data movement and storage requirements, directly addressing energy and bandwidth constraints. However, they also impose stringent requirements on numerical handling, accumulation, and software tooling.</p>
-<p>From a design perspective, Blackwell illustrates why new architectures are necessary: emerging AI workloads cannot be efficiently mapped onto legacy datapaths, memory organizations, or precision assumptions without incurring unacceptable inefficiencies. Supporting FP4-scale computation efficiently requires rethinking datapath widths, register file organization, memory packing, and error management—decisions that must be made at the micro- and nanoelectronic design level.</p>
+<p>From a design perspective, Blackwell illustrates why new architectures are necessary: emerging AI workloads cannot be efficiently mapped onto legacy datapaths, memory organizations, or precision assumptions without incurring unacceptable inefficiencies. Supporting FP4-scale computation efficiently requires rethinking datapath widths, register file organization, memory packing, and error management—decisions that must be made at the micro and nanoelectronic design level.</p>
 </section>
 <section id="why-new-architectures-are-necessary" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="why-new-architectures-are-necessary"><span class="header-section-number">2.1.5</span> Why New Architectures Are Necessary</h3>
@@ -333,7 +399,7 @@ div.csl-indent {
 <li><strong>Emergence of new numerical formats</strong>, which require native hardware support to be both efficient and numerically robust.</li>
 <li><strong>Increasing software complexity</strong>, which demands architectures that expose controllable primitives for scheduling and data movement rather than opaque execution.</li>
 </ol>
-<p>These pressures are not limited to data centers. In Edge AI, where power, area, and thermal budgets are far tighter, the inefficiencies tolerated in large systems become prohibitive. As a result, insights gained from architectures such as Hopper and Blackwell are directly relevant to the design of future edge accelerators, reinforcing the importance of micro- and nanoelectronic expertise in shaping next-generation AI systems.</p>
+<p>These pressures are not limited to data centers. In Edge AI, where power, area, and thermal budgets are far tighter, the inefficiencies tolerated in large systems become prohibitive. As a result, insights gained from architectures such as Hopper and Blackwell are directly relevant to the design of future edge accelerators, reinforcing the importance of micro and nanoelectronic expertise in shaping next-generation AI systems.</p>
 </section>
 </section>
 <section id="programming-models-and-software-stacks-for-modern-gpus" class="level2" data-number="2.2">
@@ -685,6 +751,14 @@ Williams, Samuel, Andrew Waterman, and David Patterson. 2009. <span>“Roofline:
 </div>
 </div>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><em>Thread block clusters</em> refer to a hierarchical grouping of multiple thread blocks in modern GPU architectures that allows their co-residency and explicit synchronization across a defined set of Streaming Multiprocessors (SMs), enabling efficient data sharing through shared memory and reducing latency from global memory accesses.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><em>Tensor Memory Accelerator</em> refer to a dedicated hardware unit in modern GPUs that asynchronously and programmably manages multidimensional data transfers between global memory and shared memory, offloading these operations from compute cores and enabling overlap of data movement and execution, thereby improving performance and energy efficiency.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><em>Mixture of Experts (MoE)</em> refer to a neural network architecture in which multiple specialized sub-networks (<em>experts</em>) are selectively activated for each input by a gating mechanism, so that only a subset of the model’s parameters is evaluated per inference or training step, enabling improved scalability and computational efficiency at the cost of increased communication and control complexity.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1090,13 +1164,13 @@ Williams, Samuel, Andrew Waterman, and David Patterson. 2009. <span>“Roofline:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./01-intro.html" class="pagination-link" aria-label="Chapter 1 – Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1 – Introduction</span></span>
+      <a href="./01-intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-architecture.html" class="pagination-link" aria-label="Chapter 3 – Architecture Comparison: Hopper vs Blackwell">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3 – Architecture Comparison: Hopper vs Blackwell</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-architecture.html" class="pagination-link" aria-label="Architecture Comparison: Hopper vs Blackwell">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Architecture Comparison: Hopper vs Blackwell</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

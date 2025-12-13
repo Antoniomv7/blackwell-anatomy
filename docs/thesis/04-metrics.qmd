@@ -1,4 +1,4 @@
-# Chapter 4 – Metrics for GPU Efficiency
+# Metrics for GPU Efficiency
 ## Performance per Watt
 ## Compute Throughput by Data Type
 ## Memory Bandwidth and Arithmetic Intensity

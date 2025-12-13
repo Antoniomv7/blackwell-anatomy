@@ -1,8 +1,8 @@
-# Chapter 2 – Background and Related Work
+# Background and Related Work
 
 The rapid evolution of artificial intelligence workloads over the last decade has fundamentally reshaped the design space of high-performance and embedded computing systems. GPUs, originally conceived as fixed-function graphics accelerators, have progressively evolved into highly programmable, throughput-oriented processors optimized for data-parallel workloads. This evolution has been driven not only by raw performance demands, but by the changing **computational structure of AI models**, the growing dominance of data movement and energy constraints, and the breakdown of traditional scaling laws at the device level.
 
-This chapter provides the architectural background necessary to contextualize the experimental analysis presented later in this thesis. In particular, it traces the evolution of NVIDIA GPU architectures from Volta to Blackwell, emphasizing how each generation introduces architectural mechanisms explicitly designed to address emerging limitations in efficiency, scalability, and programmability. The goal is to motivate, from a micro- and nanoelectronic perspective, **why new architectures are required**, and why incremental improvements are insufficient to sustain AI performance growth—especially with relevance to Edge AI constraints.
+This chapter provides the architectural background necessary to contextualize the experimental analysis presented later in this thesis. In particular, it traces the evolution of NVIDIA GPU architectures from Volta to Blackwell, emphasizing how each generation introduces architectural mechanisms explicitly designed to address emerging limitations in efficiency, scalability, and programmability. The goal is to motivate, from a micro and nanoelectronic perspective, **why new architectures are required**, and why incremental improvements are insufficient to sustain AI performance growth.
 
 ## Evolution of GPU Architectures: From Volta to Blackwell
 
@@ -24,17 +24,17 @@ However, despite these advances, Ampere largely preserved the existing execution
 
 The Hopper architecture (H100) represents a qualitative shift from compute-centric optimization toward **data-movement-aware architecture**. While Hopper continues to enhance Tensor Core throughput and precision support (including FP8), its most significant innovations address how data is transferred, scheduled, and synchronized across the chip [@nvidiaHopperInDepthBlog2022; @nvidiaH100Whitepaper2022].
 
-Key features such as **thread block clusters** and the **Tensor Memory Accelerator (TMA)** enable more explicit control over data movement between global memory and shared memory, allowing software to overlap computation and communication more effectively. From a microelectronic standpoint, this reflects an architectural acknowledgment that memory accesses—not arithmetic—dominate both latency and energy consumption.
+Key features such as **thread block clusters**[^13] and the **Tensor Memory Accelerator (TMA)**[^14] enable more explicit control over data movement between global memory and shared memory, allowing software to overlap computation and communication more effectively. From a microelectronic standpoint, this reflects an architectural acknowledgment that memory accesses—not arithmetic—dominate both latency and energy consumption.
 
 Hopper therefore deepens the hardware–software contract: performance is no longer achieved automatically by launching enough threads, but by structuring computation to align with architectural primitives. This shift is particularly relevant for microbenchmarking studies, as it exposes how architectural features translate into achievable efficiency only under specific software conditions.
 
 ### Blackwell: Architecture for Scaling, Efficiency, and Reduced Precision
 
-Blackwell (B200) extends the Hopper philosophy further, motivated by the explosive growth of large language models (LLMs) and *Mixture-of-Experts* architectures. These models stress not only compute and memory, but also **system-level scalability and energy efficiency**, pushing existing architectural paradigms to their limits [@nvidiaBlackwellArchitecturePage].
+Blackwell (B200) extends the Hopper philosophy further, motivated by the explosive growth of large language models (LLMs) and *Mixture-of-Experts*[^15] architectures. These models stress in compute, memory and also **system-level scalability and energy efficiency**, pushing existing architectural paradigms to their limits [@nvidiaBlackwellArchitecturePage].
 
 A defining characteristic of Blackwell is its support for more aggressive reduced-precision formats, including FP4 with microscaling (e.g., NVFP4), alongside second-generation Transformer Engine support [@nvidiaNVFP4Blog2025]. These formats significantly reduce data movement and storage requirements, directly addressing energy and bandwidth constraints. However, they also impose stringent requirements on numerical handling, accumulation, and software tooling.
 
-From a design perspective, Blackwell illustrates why new architectures are necessary: emerging AI workloads cannot be efficiently mapped onto legacy datapaths, memory organizations, or precision assumptions without incurring unacceptable inefficiencies. Supporting FP4-scale computation efficiently requires rethinking datapath widths, register file organization, memory packing, and error management—decisions that must be made at the micro- and nanoelectronic design level.
+From a design perspective, Blackwell illustrates why new architectures are necessary: emerging AI workloads cannot be efficiently mapped onto legacy datapaths, memory organizations, or precision assumptions without incurring unacceptable inefficiencies. Supporting FP4-scale computation efficiently requires rethinking datapath widths, register file organization, memory packing, and error management—decisions that must be made at the micro and nanoelectronic design level.
 
 ### Why New Architectures Are Necessary
 
@@ -45,7 +45,7 @@ The progression from Volta to Blackwell highlights a fundamental conclusion: **a
 3. **Emergence of new numerical formats**, which require native hardware support to be both efficient and numerically robust.
 4. **Increasing software complexity**, which demands architectures that expose controllable primitives for scheduling and data movement rather than opaque execution.
 
-These pressures are not limited to data centers. In Edge AI, where power, area, and thermal budgets are far tighter, the inefficiencies tolerated in large systems become prohibitive. As a result, insights gained from architectures such as Hopper and Blackwell are directly relevant to the design of future edge accelerators, reinforcing the importance of micro- and nanoelectronic expertise in shaping next-generation AI systems.
+These pressures are not limited to data centers. In Edge AI, where power, area, and thermal budgets are far tighter, the inefficiencies tolerated in large systems become prohibitive. As a result, insights gained from architectures such as Hopper and Blackwell are directly relevant to the design of future edge accelerators, reinforcing the importance of micro and nanoelectronic expertise in shaping next-generation AI systems.
 
 ## Programming Models and Software Stacks for Modern GPUs
 
@@ -398,3 +398,9 @@ This analytical approach aligns naturally with the goals of micro- and nanoelect
 The Roofline model provides a principled framework for analyzing performance limits in AI workloads by unifying algorithmic and architectural considerations. When combined with complementary metrics such as performance per watt and memory efficiency, it enables a comprehensive assessment of efficiency across the compute–memory–energy spectrum.
 
 In this thesis, Roofline analysis forms the backbone of the experimental evaluation, linking GEMM microbenchmark results to architectural features in Hopper and Blackwell. The next chapter builds on this foundation by detailing the **experimental methodology**, including benchmark design, measurement procedures, and evaluation criteria.
+
+[^13]: *Thread block clusters* refer to a hierarchical grouping of multiple thread blocks in modern GPU architectures that allows their co-residency and explicit synchronization across a defined set of Streaming Multiprocessors (SMs), enabling efficient data sharing through shared memory and reducing latency from global memory accesses.
+
+[^14]: *Tensor Memory Accelerator* refer to a dedicated hardware unit in modern GPUs that asynchronously and programmably manages multidimensional data transfers between global memory and shared memory, offloading these operations from compute cores and enabling overlap of data movement and execution, thereby improving performance and energy efficiency.
+
+[^15]: *Mixture of Experts (MoE)* refer to a neural network architecture in which multiple specialized sub-networks (*experts*) are selectively activated for each input by a gating mechanism, so that only a subset of the model’s parameters is evaluated per inference or training step, enabling improved scalability and computational efficiency at the cost of increased communication and control complexity.
