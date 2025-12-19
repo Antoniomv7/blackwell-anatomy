@@ -1,0 +1,4 @@
+# Appendices
+## Appendix A: Experimental Scripts and Kernel Listings
+## Appendix B: Extended Benchmark Results
+## Appendix C: TMA and GEMM Intrinsics Documentation

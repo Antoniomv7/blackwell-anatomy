@@ -1,0 +1,9 @@
+# Programming Models for Modern GPUs
+## Introduction to GPU DSLs for Performance
+## Triton
+## ThunderKittens (TK)
+## TileLang
+## Cute and CUTLASS
+## Gluon
+## Pallas and the JAX ML Scaling Framework
+## Summary: DSLs as Enablers of Architectural Efficiency

@@ -1,0 +1,8 @@
+# Results and Discussion
+## Performance Comparison Across Data Types
+## Analysis of Performance per Watt
+## Memory Bandwidth Observations
+## Impact of TMA (Tensor Memory Accelerator)
+## Roofline Analysis: Compute vs Memory Bound
+## Real-World Relevance: Case Study on Transformer Inference/Training
+## Discussion of Bottlenecks and Architectural Impact

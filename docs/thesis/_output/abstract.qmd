@@ -1,0 +1,5 @@
+# Abstract {-}
+
+Here you will write the abstract of your thesis. It should summarize the motivation (hardware-software co-design), the methodology (microbenchmarking B200 vs H100), and the main findings regarding efficiency and edge computing implications.
+
+Keywords: NVIDIA Blackwell, GEMM, Edge Computing, Hardware-Software Co-design, Tensor Cores, FP4.

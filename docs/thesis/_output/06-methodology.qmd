@@ -1,0 +1,12 @@
+# Methodology and Experimental Setup
+## Objectives of Benchmarking
+## Hardware Platforms and Specifications
+### Hopper H100
+### Blackwell B200
+## Software Tools and Libraries Used
+## Microbenchmark Design: GEMM Kernel Implementations
+## Measurement Techniques
+### Throughput (FLOP/s)
+### Power Consumption and Efficiency
+### Memory Bandwidth
+## Ensuring Fairness and Reproducibility

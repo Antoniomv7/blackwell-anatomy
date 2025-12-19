@@ -1,0 +1,10 @@
+# Architecture Comparison: Hopper vs Blackwell
+## Overview of Hopper Architecture
+## Overview of Blackwell Architecture
+## Key Innovations in Blackwell
+### Ultra Tensor Cores and New Precision Formats (FP8, FP4)
+### Transformer Engine and FP4 Micro Scaling
+### Multi-Die Chip Design and Interconnect (NVLink, NVSwitch)
+### Memory System: HBM3e, L2 Cache, and Shared Memory
+## Performance/Watt and Area Efficiency Considerations
+## Summary of Architectural Differences

@@ -292,7 +292,7 @@ where ($P_{\text{peak}}$) is the peak compute throughput of the processor and ($
 
 Graphically, the model is represented as a piecewise linear curve:
 
-![Roofline Model](../figures/roofline-model.png){#fig-roofline width=70% fig-align="center"}
+![Rooftline Model](..){#fig-gb200 width=70% fig-align="center"}
 
 * A **sloped region**, where performance is limited by memory bandwidth (*memory-bound* regime),
 * A **flat roof**, where performance is limited by compute throughput (*compute-bound* regime).

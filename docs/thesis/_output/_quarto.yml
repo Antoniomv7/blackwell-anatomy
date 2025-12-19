@@ -1,0 +1,63 @@
+project:
+  type: book
+  output-dir: _output
+
+book:
+  title: "The Anatomy of an Efficient Blackwell GEMM"
+  subtitle: "Microbenchmarking and Hardware-Software Co-Design for Edge Computing"
+  author: "Antonio Moral Villarín"
+  date: "2026"
+  chapters:
+    - part: "Part I: Preliminaries"
+      chapters:
+        - abstract.qmd
+        - acknowledgements.qmd
+        - index.qmd
+    - part: "Part II: Introduction and Theoretical Background"
+      chapters:
+        - 01-intro.qmd
+        - 02-background.qmd
+    - part: "Part III: System Design"
+      chapters:
+        - 03-architecture.qmd
+        - 04-metrics.qmd
+    - part: "Part IV: Implementation and Methodology"
+      chapters:
+        - 05-programming.qmd
+        - 06-methodology.qmd
+    - part: "Part V: Results and Discussion"
+      chapters:
+        - 07-results.qmd
+        - 08-conclusion.qmd
+    - part: "Part VI: References and Appendices"
+      chapters:
+        - 09-references.qmd
+        - 10-appendices.qmd
+
+bibliography: references.bib
+
+format:
+  pdf:
+    documentclass: scrreprt # KOMA-Script Report (European standard for theses)
+    classoption: [a4paper, 11pt]
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=3cm
+      - right=2cm
+    lof: true # List of Figures, automatic
+    lot: true # List of Tables, automatic
+    toc: true # Table of Contents, automatic
+    number-sections: true
+    colorlinks: true
+    code-line-numbers: true
+    include-before-body: 
+      text: |
+        \pagenumbering{roman} % Roman numerals for front matter
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{booktabs}
+  html:
+    theme: cosmo
+    code-copy: true
